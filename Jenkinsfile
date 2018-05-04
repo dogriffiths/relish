@@ -50,7 +50,7 @@ pipeline {
                         sh "cp relish-espresso/build/outputs/aar/relish-espresso-release.aar 'relish-espresso-0.0.${BUILD_NUMBER}.aar'"
                         sh "github-release upload --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'relish-core-0.0.${BUILD_NUMBER}.jar' --file 'relish-core-0.0.${BUILD_NUMBER}.jar'"
                         sh "github-release upload --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'relish-selenide-0.0.${BUILD_NUMBER}.jar' --file 'relish-selenide-0.0.${BUILD_NUMBER}.jar'"
-                        sh "github-release upload --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'relish-espresso-0.0.${BUILD_NUMBER}.jar' --file 'relish-espresso-0.0.${BUILD_NUMBER}.aar'"
+                        sh "github-release upload --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'relish-espresso-0.0.${BUILD_NUMBER}.aar' --file 'relish-espresso-0.0.${BUILD_NUMBER}.aar'"
                         sh "rm -f 'relish-core-0.0.${BUILD_NUMBER}.jar'"
                         sh "rm -f 'relish-selenide-0.0.${BUILD_NUMBER}.jar'"
                         sh "rm -f 'relish-espresso-0.0.${BUILD_NUMBER}.aar'"
