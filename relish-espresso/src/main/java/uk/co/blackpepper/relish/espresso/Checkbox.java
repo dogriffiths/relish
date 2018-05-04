@@ -16,6 +16,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Locale;
 
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 import static android.support.test.espresso.matcher.ViewMatchers.isChecked;
@@ -34,7 +35,7 @@ public class Checkbox extends EspressoWidget {
      * @param peer   the peer
      * @param parent the parent
      */
-    public Checkbox(ViewInteraction peer, Component parent) {
+    public Checkbox(Matcher<View> peer, Component parent) {
         super(peer, parent);
     }
 
@@ -67,9 +68,9 @@ public class Checkbox extends EspressoWidget {
             @Override
             public void run() {
                 if (isChecked) {
-                    Checkbox.this.get().check(ViewAssertions.matches(isChecked()));
+                    onView(Checkbox.this.get()).check(ViewAssertions.matches(isChecked()));
                 } else {
-                    Checkbox.this.get().check(ViewAssertions.matches(not(isChecked())));
+                    onView(Checkbox.this.get()).check(ViewAssertions.matches(not(isChecked())));
                 }
             }
         }, 1000, 3);
@@ -88,7 +89,7 @@ public class Checkbox extends EspressoWidget {
     public boolean isSelected() {
         assertVisible();
         try {
-            get().check(ViewAssertions.matches(isChecked()));
+            onView(get()).check(ViewAssertions.matches(isChecked()));
             return true;
         } catch(AssertionFailedError e) {
             return false;

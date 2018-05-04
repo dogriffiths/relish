@@ -10,6 +10,7 @@ import uk.co.blackpepper.relish.core.Component;
 import uk.co.blackpepper.relish.core.Widget;
 import org.hamcrest.Matcher;
 
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
@@ -18,14 +19,14 @@ import static org.hamcrest.Matchers.not;
 /**
  * The type Espresso widget.
  */
-public class EspressoWidget extends Widget<ViewInteraction> {
+public class EspressoWidget extends Widget<Matcher<View>> {
     /**
      * Instantiates a new Espresso widget.
      *
      * @param peer   the peer
      * @param parent the parent
      */
-    public EspressoWidget(ViewInteraction peer, Component parent) {
+    public EspressoWidget(Matcher<View> peer, Component parent) {
         super(peer, parent);
     }
 
@@ -34,7 +35,7 @@ public class EspressoWidget extends Widget<ViewInteraction> {
         attempt(new Runnable() {
             @Override
             public void run() {
-                get().perform(ViewActions.click());
+                onView(get()).perform(ViewActions.click());
             }
         }, 100, 50);
     }
@@ -42,7 +43,7 @@ public class EspressoWidget extends Widget<ViewInteraction> {
     @Override
     public void assertInvisible() {
         try {
-            get().check(ViewAssertions.matches(not(isDisplayed())));
+            onView(get()).check(ViewAssertions.matches(not(isDisplayed())));
         } catch(NoMatchingViewException e) {
             // Do nothing
         }
@@ -50,23 +51,23 @@ public class EspressoWidget extends Widget<ViewInteraction> {
 
     @Override
     public void assertDisabled() {
-        get().check(ViewAssertions.matches(not(isEnabled())));
+        onView(get()).check(ViewAssertions.matches(not(isEnabled())));
     }
 
     @Override
     public void assertEnabled() {
-        get().check(ViewAssertions.matches(isEnabled()));
+        onView(get()).check(ViewAssertions.matches(isEnabled()));
     }
 
     @Override
-    public Widget<ViewInteraction> scrollTo() {
-        get().perform(ViewActions.scrollTo());
+    public Widget<Matcher<View>> scrollTo() {
+        onView(get()).perform(ViewActions.scrollTo());
         return this;
     }
 
     @Override
     public void assertVisible() {
-        get().check(ViewAssertions.matches(isDisplayed()));
+        onView(get()).check(ViewAssertions.matches(isDisplayed()));
     }
 
     @Override

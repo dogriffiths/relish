@@ -9,6 +9,7 @@ import android.widget.TextView;
 import uk.co.blackpepper.relish.core.Component;
 import org.hamcrest.Matcher;
 
+import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
 import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 
@@ -22,7 +23,7 @@ public class InputText extends EspressoWidget {
      * @param peer   the peer
      * @param parent the parent
      */
-    public InputText(ViewInteraction peer, Component parent) {
+    public InputText(Matcher<View> peer, Component parent) {
         super(peer, parent);
     }
 
@@ -44,12 +45,12 @@ public class InputText extends EspressoWidget {
     public void enterText(String text) {
         click();
         clearText();
-        get().perform(ViewActions.typeText(text));
+        onView(get()).perform(ViewActions.typeText(text));
     }
 
     private String text() {
         final String[] stringHolder = { null };
-        get().perform(new ViewAction() {
+        onView(get()).perform(new ViewAction() {
             @Override
             public Matcher<View> getConstraints() {
                 return isAssignableFrom(TextView.class);
@@ -70,6 +71,6 @@ public class InputText extends EspressoWidget {
     }
 
     private void clearText() {
-        get().perform(ViewActions.clearText()).perform(closeSoftKeyboard());
+        onView(get()).perform(ViewActions.clearText()).perform(closeSoftKeyboard());
     }
 }
