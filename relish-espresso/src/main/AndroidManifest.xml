@@ -2,4 +2,11 @@
           package="uk.co.blackpepper.relish.espresso"
 >
 
+    <application android:allowBackup="true"
+                 android:label="@string/app_name"
+                 android:supportsRtl="true"
+    >
+
+    </application>
+
 </manifest>
