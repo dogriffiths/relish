@@ -9,6 +9,7 @@ import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.view.View;
 import uk.co.blackpepper.relish.core.Component;
+import uk.co.blackpepper.relish.core.TestUtils;
 import uk.co.blackpepper.relish.core.Widget;
 import org.hamcrest.Matcher;
 
@@ -98,7 +99,12 @@ public class EspressoWidget extends Widget<ViewInteraction> {
 
     @Override
     public void assertVisible() {
-        check(ViewAssertions.matches(isDisplayed()));
+        try {
+            check(ViewAssertions.matches(isDisplayed()));
+        } catch(RuntimeException e) {
+            scrollTo();
+            check(ViewAssertions.matches(isDisplayed()));
+        }
     }
 
     @Override
