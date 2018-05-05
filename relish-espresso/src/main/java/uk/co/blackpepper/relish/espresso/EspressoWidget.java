@@ -1,10 +1,7 @@
 package uk.co.blackpepper.relish.espresso;
 
 import android.app.Activity;
-import android.support.test.espresso.NoMatchingViewException;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.ViewAssertion;
-import android.support.test.espresso.ViewInteraction;
+import android.support.test.espresso.*;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.view.View;
@@ -57,7 +54,13 @@ public class EspressoWidget extends Widget<ViewInteraction> {
         attempt(new Runnable() {
             @Override
             public void run() {
-                perform(ViewActions.click());
+                try {
+                    perform(ViewActions.click());
+                }catch(SecurityException se) {
+                    // It's probably that annoying "Tap to search Google and more" popup
+                    Espresso.closeSoftKeyboard();
+                    perform(ViewActions.click());
+                }
             }
         }, 100, 50);
     }
