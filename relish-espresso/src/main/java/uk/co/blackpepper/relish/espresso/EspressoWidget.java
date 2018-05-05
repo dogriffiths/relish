@@ -5,6 +5,7 @@ import android.support.test.espresso.*;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.view.View;
+import junit.framework.AssertionFailedError;
 import uk.co.blackpepper.relish.core.Component;
 import uk.co.blackpepper.relish.core.TestUtils;
 import uk.co.blackpepper.relish.core.Widget;
@@ -110,7 +111,7 @@ public class EspressoWidget extends Widget<ViewInteraction> {
     public void assertVisible() {
         try {
             check(ViewAssertions.matches(isDisplayed()));
-        } catch(RuntimeException e) {
+        } catch(AssertionFailedError e) {
             scrollTo();
             check(ViewAssertions.matches(isDisplayed()));
         }
