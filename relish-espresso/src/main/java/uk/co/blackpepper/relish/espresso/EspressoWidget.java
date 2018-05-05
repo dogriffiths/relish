@@ -2,6 +2,8 @@ package uk.co.blackpepper.relish.espresso;
 
 import android.app.Activity;
 import android.support.test.espresso.NoMatchingViewException;
+import android.support.test.espresso.ViewAction;
+import android.support.test.espresso.ViewAssertion;
 import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
@@ -59,10 +61,20 @@ public class EspressoWidget extends Widget<ViewInteraction> {
         }, 100, 50);
     }
 
+    public EspressoWidget check(ViewAssertion viewAssertion) {
+        get().check(viewAssertion);
+        return this;
+    }
+
+    public EspressoWidget perform(ViewAction viewAction) {
+        get().perform(viewAction);
+        return this;
+    }
+
     @Override
     public void assertInvisible() {
         try {
-            get().check(ViewAssertions.matches(not(isDisplayed())));
+            check(ViewAssertions.matches(not(isDisplayed())));
         } catch(NoMatchingViewException e) {
             // Do nothing
         }
@@ -70,23 +82,23 @@ public class EspressoWidget extends Widget<ViewInteraction> {
 
     @Override
     public void assertDisabled() {
-        get().check(ViewAssertions.matches(not(isEnabled())));
+        check(ViewAssertions.matches(not(isEnabled())));
     }
 
     @Override
     public void assertEnabled() {
-        get().check(ViewAssertions.matches(isEnabled()));
+        check(ViewAssertions.matches(isEnabled()));
     }
 
     @Override
     public Widget<ViewInteraction> scrollTo() {
-        get().perform(ViewActions.scrollTo());
+        perform(ViewActions.scrollTo());
         return this;
     }
 
     @Override
     public void assertVisible() {
-        get().check(ViewAssertions.matches(isDisplayed()));
+        check(ViewAssertions.matches(isDisplayed()));
     }
 
     @Override

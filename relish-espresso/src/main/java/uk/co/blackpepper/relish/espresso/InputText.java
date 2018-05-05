@@ -16,7 +16,7 @@ import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFro
 /**
  * The type Input text.
  */
-public class InputText extends EspressoWidget {
+public class InputText extends Text {
     /**
      * Instantiates a new Input text.
      *
@@ -25,11 +25,6 @@ public class InputText extends EspressoWidget {
      */
     public InputText(Matcher<View> peer, Component parent) {
         super(peer, parent);
-    }
-
-    @Override
-    public String getStringValue() {
-        return text();
     }
 
     @Override
@@ -45,32 +40,10 @@ public class InputText extends EspressoWidget {
     public void enterText(String text) {
         click();
         clearText();
-        onView(get()).perform(ViewActions.typeText(text));
-    }
-
-    private String text() {
-        final String[] stringHolder = { null };
-        onView(get()).perform(new ViewAction() {
-            @Override
-            public Matcher<View> getConstraints() {
-                return isAssignableFrom(TextView.class);
-            }
-
-            @Override
-            public String getDescription() {
-                return "getting text from a TextView";
-            }
-
-            @Override
-            public void perform(UiController uiController, View view) {
-                TextView tv = (TextView)view; //Save, because of check in getConstraints()
-                stringHolder[0] = tv.getText().toString();
-            }
-        });
-        return stringHolder[0];
+        perform(ViewActions.typeText(text));
     }
 
     private void clearText() {
-        onView(get()).perform(ViewActions.clearText()).perform(closeSoftKeyboard());
+        perform(ViewActions.clearText()).perform(closeSoftKeyboard());
     }
 }

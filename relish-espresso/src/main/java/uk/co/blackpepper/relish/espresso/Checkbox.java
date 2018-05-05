@@ -68,9 +68,9 @@ public class Checkbox extends EspressoWidget {
             @Override
             public void run() {
                 if (isChecked) {
-                    onView(Checkbox.this.get()).check(ViewAssertions.matches(isChecked()));
+                    Checkbox.this.get().check(ViewAssertions.matches(isChecked()));
                 } else {
-                    onView(Checkbox.this.get()).check(ViewAssertions.matches(not(isChecked())));
+                    Checkbox.this.get().check(ViewAssertions.matches(not(isChecked())));
                 }
             }
         }, 1000, 3);
@@ -89,7 +89,7 @@ public class Checkbox extends EspressoWidget {
     public boolean isSelected() {
         assertVisible();
         try {
-            onView(get()).check(ViewAssertions.matches(isChecked()));
+            get().check(ViewAssertions.matches(isChecked()));
             return true;
         } catch(AssertionFailedError e) {
             return false;
