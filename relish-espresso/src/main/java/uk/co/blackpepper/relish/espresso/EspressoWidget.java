@@ -95,7 +95,11 @@ public class EspressoWidget extends Widget<ViewInteraction> {
 
     @Override
     public Widget<ViewInteraction> scrollTo() {
-        get().perform(ViewActions.scrollTo());
+        try {
+            get().perform(ViewActions.scrollTo());
+        } catch(RuntimeException e) {
+            // Do nothing. It's probably not in a scroll widget.
+        }
         return this;
     }
 
