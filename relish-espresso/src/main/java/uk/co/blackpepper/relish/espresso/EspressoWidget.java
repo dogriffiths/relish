@@ -11,23 +11,42 @@ import uk.co.blackpepper.relish.core.Widget;
 import org.hamcrest.Matcher;
 
 import static android.support.test.espresso.Espresso.onView;
+import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
+import static org.hamcrest.Matchers.allOf;
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 import static org.hamcrest.Matchers.not;
 
 /**
  * The type Espresso widget.
  */
-public class EspressoWidget extends Widget<Matcher<View>> {
+public class EspressoWidget extends Widget<ViewInteraction> {
+
+    private final Matcher<View> matcher;
+
     /**
      * Instantiates a new Espresso widget.
      *
-     * @param peer   the peer
+     * @param matcher   the peer
      * @param parent the parent
      */
-    public EspressoWidget(Matcher<View> peer, Component parent) {
-        super(peer, parent);
+    public EspressoWidget(Matcher<View> matcher, Component parent) {
+        super(onView(matcher), parent);
+        this.matcher = matcher;
+    }
+
+    @Override
+    public ViewInteraction get() {
+        Component parent = getParent();
+        if (matcher != null) {
+            if (parent != null) {
+                if (parent instanceof EspressoWidget) {
+                    return onView(allOf(matcher, isDescendantOfA(((EspressoWidget) parent).matcher)));
+                }
+            }
+        }
+        return super.get();
     }
 
     @Override
@@ -35,7 +54,7 @@ public class EspressoWidget extends Widget<Matcher<View>> {
         attempt(new Runnable() {
             @Override
             public void run() {
-                onView(get()).perform(ViewActions.click());
+                get().perform(ViewActions.click());
             }
         }, 100, 50);
     }
@@ -43,7 +62,7 @@ public class EspressoWidget extends Widget<Matcher<View>> {
     @Override
     public void assertInvisible() {
         try {
-            onView(get()).check(ViewAssertions.matches(not(isDisplayed())));
+            get().check(ViewAssertions.matches(not(isDisplayed())));
         } catch(NoMatchingViewException e) {
             // Do nothing
         }
@@ -51,23 +70,23 @@ public class EspressoWidget extends Widget<Matcher<View>> {
 
     @Override
     public void assertDisabled() {
-        onView(get()).check(ViewAssertions.matches(not(isEnabled())));
+        get().check(ViewAssertions.matches(not(isEnabled())));
     }
 
     @Override
     public void assertEnabled() {
-        onView(get()).check(ViewAssertions.matches(isEnabled()));
+        get().check(ViewAssertions.matches(isEnabled()));
     }
 
     @Override
-    public Widget<Matcher<View>> scrollTo() {
-        onView(get()).perform(ViewActions.scrollTo());
+    public Widget<ViewInteraction> scrollTo() {
+        get().perform(ViewActions.scrollTo());
         return this;
     }
 
     @Override
     public void assertVisible() {
-        onView(get()).check(ViewAssertions.matches(isDisplayed()));
+        get().check(ViewAssertions.matches(isDisplayed()));
     }
 
     @Override
