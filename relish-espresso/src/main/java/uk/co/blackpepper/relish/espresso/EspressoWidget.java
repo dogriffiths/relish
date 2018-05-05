@@ -57,7 +57,7 @@ public class EspressoWidget extends Widget<ViewInteraction> {
         attempt(new Runnable() {
             @Override
             public void run() {
-                get().perform(ViewActions.click());
+                perform(ViewActions.click());
             }
         }, 100, 50);
     }
@@ -68,6 +68,8 @@ public class EspressoWidget extends Widget<ViewInteraction> {
     }
 
     public EspressoWidget perform(ViewAction viewAction) {
+        assertVisible();
+        scrollTo();
         get().perform(viewAction);
         return this;
     }
@@ -93,7 +95,7 @@ public class EspressoWidget extends Widget<ViewInteraction> {
 
     @Override
     public Widget<ViewInteraction> scrollTo() {
-        perform(ViewActions.scrollTo());
+        get().perform(ViewActions.scrollTo());
         return this;
     }
 
