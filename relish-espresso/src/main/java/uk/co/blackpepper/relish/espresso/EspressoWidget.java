@@ -1,23 +1,19 @@
 package uk.co.blackpepper.relish.espresso;
 
-import android.app.Activity;
 import android.support.test.espresso.*;
 import android.support.test.espresso.action.ViewActions;
 import android.support.test.espresso.assertion.ViewAssertions;
 import android.view.View;
 import junit.framework.AssertionFailedError;
-import uk.co.blackpepper.relish.core.Component;
-import uk.co.blackpepper.relish.core.TestUtils;
-import uk.co.blackpepper.relish.core.Widget;
 import org.hamcrest.Matcher;
+import uk.co.blackpepper.relish.core.Component;
+import uk.co.blackpepper.relish.core.Widget;
 
 import static android.support.test.espresso.Espresso.onView;
-import static android.support.test.espresso.matcher.ViewMatchers.isDescendantOfA;
-import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
-import static android.support.test.espresso.matcher.ViewMatchers.isEnabled;
+import static android.support.test.espresso.matcher.ViewMatchers.*;
 import static org.hamcrest.Matchers.allOf;
-import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 import static org.hamcrest.Matchers.not;
+import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 
 /**
  * The type Espresso widget.
@@ -29,8 +25,8 @@ public class EspressoWidget extends Widget<ViewInteraction> {
     /**
      * Instantiates a new Espresso widget.
      *
-     * @param matcher   the peer
-     * @param parent the parent
+     * @param matcher the peer
+     * @param parent  the parent
      */
     public EspressoWidget(Matcher<View> matcher, Component parent) {
         super(onView(matcher), parent);
@@ -66,11 +62,23 @@ public class EspressoWidget extends Widget<ViewInteraction> {
         }, 100, 50);
     }
 
+    /**
+     * Check espresso widget.
+     *
+     * @param viewAssertion the view assertion
+     * @return the espresso widget
+     */
     public EspressoWidget check(ViewAssertion viewAssertion) {
         get().check(viewAssertion);
         return this;
     }
 
+    /**
+     * Perform espresso widget.
+     *
+     * @param viewAction the view action
+     * @return the espresso widget
+     */
     public EspressoWidget perform(ViewAction viewAction) {
         assertVisible();
         scrollTo();

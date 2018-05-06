@@ -1,17 +1,11 @@
 package uk.co.blackpepper.relish.espresso;
 
-import android.support.test.espresso.UiController;
-import android.support.test.espresso.ViewAction;
-import android.support.test.espresso.ViewInteraction;
 import android.support.test.espresso.action.ViewActions;
 import android.view.View;
-import android.widget.TextView;
-import uk.co.blackpepper.relish.core.Component;
 import org.hamcrest.Matcher;
+import uk.co.blackpepper.relish.core.Component;
 
-import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.closeSoftKeyboard;
-import static android.support.test.espresso.matcher.ViewMatchers.isAssignableFrom;
 
 /**
  * The type Input text.

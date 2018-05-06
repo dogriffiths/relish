@@ -31,6 +31,9 @@ public class Text extends EspressoWidget {
     }
 }
 
+/**
+ * The type Capture text action.
+ */
 class CaptureTextAction implements ViewAction {
     private String text;
 
@@ -50,6 +53,11 @@ class CaptureTextAction implements ViewAction {
         text = tv.getText().toString();
     }
 
+    /**
+     * Gets text.
+     *
+     * @return the text
+     */
     public String getText() {
         return text;
     }

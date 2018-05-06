@@ -2,8 +2,8 @@ package uk.co.blackpepper.relish.espresso;
 
 import android.app.Activity;
 import android.support.test.espresso.Espresso;
-import uk.co.blackpepper.relish.core.Component;
 import org.junit.Assert;
+import uk.co.blackpepper.relish.core.Component;
 
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 import static uk.co.blackpepper.relish.espresso.AndroidUtils.getCurrentActivity;
