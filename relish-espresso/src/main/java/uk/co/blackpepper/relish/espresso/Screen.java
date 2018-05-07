@@ -29,6 +29,10 @@ public class Screen extends Component {
         checkCurrentActivity(activity);
     }
 
+    public void assertInvisible() {
+        checkCurrentActivityNot(activity);
+    }
+
     @Override
     public String getStringValue() {
         throw new IllegalStateException("Cannot get string value for " + this);
@@ -51,4 +55,15 @@ public class Screen extends Component {
             }
         }, 50, 200);
     }
+
+    public void checkCurrentActivityNot(final Class<? extends Activity> activityClass) {
+        attempt(new Runnable() {
+            @Override
+            public void run() {
+                Class<? extends Activity> aClass = getCurrentActivity().getClass();
+                junit.framework.Assert.assertNotSame(aClass, (Class) activityClass);
+            }
+        }, 50, 200);
+    }
+
 }
