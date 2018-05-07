@@ -43,7 +43,7 @@ public abstract class Component implements Getable {
             return this;
         }
         if (parent instanceof Widget) {
-            return ((Widget)parent).getRoot();
+            return parent.getRoot();
         }
         return parent;
     }
