@@ -100,6 +100,14 @@ public class EspressoWidget extends Widget<ViewInteraction> {
         check(ViewAssertions.matches(not(isEnabled())));
     }
 
+    public void assertClickable() {
+        check(ViewAssertions.matches(isClickable()));
+    }
+
+    public void assertNotClickable() {
+        check(ViewAssertions.matches(not(isClickable())));
+    }
+
     @Override
     public void assertEnabled() {
         check(ViewAssertions.matches(isEnabled()));
