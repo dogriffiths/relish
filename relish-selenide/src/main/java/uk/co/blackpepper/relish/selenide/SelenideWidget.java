@@ -1,6 +1,7 @@
 package uk.co.blackpepper.relish.selenide;
 
 import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.ex.ElementNotFound;
@@ -195,7 +196,11 @@ public class SelenideWidget extends Widget<SelenideElement> {
     private void moveMouseTo(Point location) {
         try {
             Robot robot = new Robot();
-            robot.mouseMove(location.getX(), location.getY() + 120);
+            Point browserPosition = WebDriverRunner.getWebDriver().manage().window().getPosition();
+            robot.mouseMove(
+                    location.getX() + browserPosition.getX(),
+                    location.getY() + browserPosition.getY() + 120
+            );
             Thread.sleep(500);
         } catch (AWTException | InterruptedException e) {
             e.printStackTrace();
