@@ -6,11 +6,14 @@ import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.ex.ElementNotFound;
 import com.codeborne.selenide.ex.ElementShould;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Point;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import uk.co.blackpepper.relish.core.Component;
 import uk.co.blackpepper.relish.core.Widget;
+
+import java.awt.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -22,6 +25,7 @@ import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 public class SelenideWidget extends Widget<SelenideElement> {
 
     private By selector;
+    private static boolean demoMode;
 
     /**
      * Instantiates a new Selenide widget.
@@ -32,6 +36,14 @@ public class SelenideWidget extends Widget<SelenideElement> {
     public SelenideWidget(By selector, Component parent) {
         this($(selector), parent);
         this.selector = selector;
+    }
+
+    public static void setDemoMode(boolean dm) {
+        SelenideWidget.demoMode = dm;
+    }
+
+    public static boolean isDemoMode() {
+        return SelenideWidget.demoMode;
     }
 
     /**
@@ -59,6 +71,9 @@ public class SelenideWidget extends Widget<SelenideElement> {
 
     @Override
     public void click() {
+        if (demoMode) {
+            moveMouseToComponent();
+        }
         get().click();
     }
 
@@ -69,6 +84,10 @@ public class SelenideWidget extends Widget<SelenideElement> {
      * @param y the y
      */
     public void click(int x, int y) {
+        if (demoMode) {
+            Point location = get().getLocation();
+            moveMouseTo(new Point(location.getX() + x, location.getY() + y));
+        }
         SelenideElement element = get();
         actions().moveToElement(element, x, y).click().perform();
     }
@@ -167,5 +186,19 @@ public class SelenideWidget extends Widget<SelenideElement> {
             return selector.toString();
         }
         return super.describe();
+    }
+
+    public void moveMouseToComponent() {
+        moveMouseTo(get().getLocation());
+    }
+
+    private void moveMouseTo(Point location) {
+        try {
+            Robot robot = new Robot();
+            robot.mouseMove(location.getX(), location.getY() + 120);
+            Thread.sleep(500);
+        } catch (AWTException | InterruptedException e) {
+            e.printStackTrace();
+        }
     }
 }

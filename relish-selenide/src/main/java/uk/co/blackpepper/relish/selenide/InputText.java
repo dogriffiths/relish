@@ -38,10 +38,22 @@ public class InputText extends InputWidget {
      */
     public void enterText(String text) {
         attempt(() -> {
-            get().click();
+            click();
             clear();
             if ((text != null) && (text.length() > 0)) {
-                get().sendKeys(text);
+                if (SelenideWidget.isDemoMode()) {
+                    for (int i = 0; i < text.length(); i++) {
+                        char c = text.charAt(i);
+                        get().sendKeys("" + c);
+                        try {
+                            Thread.sleep(100 + (int)(Math.random() * 100));
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                } else {
+                    get().sendKeys(text);
+                }
             }
         }, 500, 2);
     }
