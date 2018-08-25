@@ -196,11 +196,23 @@ public class SelenideWidget extends Widget<SelenideElement> {
     private void moveMouseTo(Point location) {
         try {
             Robot robot = new Robot();
+            java.awt.Point currentPosition = MouseInfo.getPointerInfo().getLocation();
+            int currentX = currentPosition.x;
+            int currentY = currentPosition.y;
             Point browserPosition = WebDriverRunner.getWebDriver().manage().window().getPosition();
-            robot.mouseMove(
-                    location.getX() + browserPosition.getX(),
-                    location.getY() + browserPosition.getY() + 120
-            );
+            int targetX = location.getX() + browserPosition.getX() + 10;
+            int targetY = location.getY() + browserPosition.getY() + 100;
+            int x = currentX;
+            int y = currentY;
+            int diffX = targetX - currentX;
+            int diffY = targetY - currentY;
+            for (int i = 0; i < 10; i++) {
+                x += diffX / 10;
+                y += diffY / 10;
+                robot.mouseMove(x, y);
+                Thread.sleep(50);
+            }
+            robot.mouseMove(targetX, targetY);
             Thread.sleep(500);
         } catch (AWTException | InterruptedException e) {
             e.printStackTrace();
