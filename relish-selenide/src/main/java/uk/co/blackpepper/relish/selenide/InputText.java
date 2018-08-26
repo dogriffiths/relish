@@ -40,22 +40,31 @@ public class InputText extends InputWidget {
         attempt(() -> {
             click();
             clear();
-            if ((text != null) && (text.length() > 0)) {
-                if (SelenideWidget.isDemoMode()) {
-                    for (int i = 0; i < text.length(); i++) {
-                        char c = text.charAt(i);
-                        get().sendKeys("" + c);
-                        try {
-                            Thread.sleep(100 + (int)(Math.random() * 100));
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                } else {
-                    get().sendKeys(text);
-                }
-            }
+            sendKeys(text);
         }, 500, 2);
+    }
+
+    /**
+     * Send keys.
+     *
+     * @param text the text
+     */
+    public void sendKeys(String text) {
+        if ((text != null) && (text.length() > 0)) {
+            if (SelenideWidget.isDemoMode()) {
+                for (int i = 0; i < text.length(); i++) {
+                    char c = text.charAt(i);
+                    get().sendKeys("" + c);
+                    try {
+                        Thread.sleep(100 + (int)(Math.random() * 100));
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } else {
+                get().sendKeys(text);
+            }
+        }
     }
 
     @Override
