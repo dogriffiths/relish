@@ -192,7 +192,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
     public void moveMouseToComponent() {
         org.openqa.selenium.Dimension size = get().getSize();
         Point location = get().getLocation();
-        moveMouseTo(new Point(location.getX() + size.width / 2, location.getY()));
+        moveMouseTo(new Point(location.getX() + size.width / 2, location.getY() + size.height / 2));
     }
 
     private void moveMouseTo(Point location) {
@@ -202,8 +202,8 @@ public class SelenideWidget extends Widget<SelenideElement> {
             int currentX = currentPosition.x;
             int currentY = currentPosition.y;
             Point browserPosition = WebDriverRunner.getWebDriver().manage().window().getPosition();
-            int targetX = location.getX() + browserPosition.getX() + 10;
-            int targetY = location.getY() + browserPosition.getY() + 100;
+            int targetX = location.getX() + browserPosition.getX();
+            int targetY = location.getY() + browserPosition.getY() + 75;
             int x = currentX;
             int y = currentY;
             int diffX = targetX - currentX;
