@@ -56,7 +56,7 @@ public class InputText extends InputWidget {
                     char c = text.charAt(i);
                     get().sendKeys("" + c);
                     try {
-                        Thread.sleep(50 + (int)(Math.random() * 50));
+                        Thread.sleep((int)(Math.random() * 50));
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }

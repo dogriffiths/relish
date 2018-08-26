@@ -213,10 +213,10 @@ public class SelenideWidget extends Widget<SelenideElement> {
             int diffX = targetX - currentX;
             int diffY = targetY - currentY;
             for (int i = 0; i < 10; i++) {
-                x += diffX / 10;
-                y += diffY / 10;
+                x = currentX + (int)(i * diffX / 10.0);
+                y = currentY + (int)(i * diffY / 10.0);
                 robot.mouseMove(x, y);
-                Thread.sleep(30);
+                Thread.sleep(20);
             }
             robot.mouseMove(targetX, targetY);
             Thread.sleep(200);
