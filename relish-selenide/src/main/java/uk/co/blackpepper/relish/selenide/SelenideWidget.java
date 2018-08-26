@@ -193,9 +193,9 @@ public class SelenideWidget extends Widget<SelenideElement> {
         org.openqa.selenium.Dimension size = get().getSize();
         Point location = get().getLocation();
         int offsetX = size.width / 2;
-        offsetX += offsetX * (Math.random() - 0.5) / 4;
+        offsetX += size.width * (Math.random() - 0.5) / 2;
         int offsetY = size.height / 2;
-        offsetY += offsetY * (Math.random() - 0.5) / 4;
+        offsetY += size.height * (Math.random() - 0.5) / 2;
         moveMouseTo(new Point(location.getX() + offsetX, location.getY() + offsetY));
     }
 
