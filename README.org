@@ -35,4 +35,4 @@ The libraries can be downloaded through http://jitpack.io, so, for example, this
 
 # Documentation
 
-* [[./pages/tutorial.html][Tutorial]]
+* [[https://dogriffiths.github.io/relish/pages/tutorial.html][Tutorial]]
