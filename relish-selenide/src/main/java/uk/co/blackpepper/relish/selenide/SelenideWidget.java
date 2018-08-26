@@ -216,10 +216,10 @@ public class SelenideWidget extends Widget<SelenideElement> {
                 x += diffX / 10;
                 y += diffY / 10;
                 robot.mouseMove(x, y);
-                Thread.sleep(50);
+                Thread.sleep(30);
             }
             robot.mouseMove(targetX, targetY);
-            Thread.sleep(500);
+            Thread.sleep(200);
         } catch (AWTException | InterruptedException e) {
             e.printStackTrace();
         }
