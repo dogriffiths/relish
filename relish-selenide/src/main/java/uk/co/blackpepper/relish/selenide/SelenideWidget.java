@@ -35,7 +35,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
      * @param parent   the parent
      */
     public SelenideWidget(By selector, Component parent) {
-        this($(selector), parent);
+        this((parent instanceof SelenideWidget) ? ((SelenideWidget)parent).get().$(selector) : $(selector), parent);
         this.selector = selector;
     }
 
