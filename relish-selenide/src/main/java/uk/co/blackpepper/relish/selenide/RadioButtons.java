@@ -45,6 +45,9 @@ public class RadioButtons extends InputWidget {
         attempt(() ->
         {
             if (radioExistsFor(option)) {
+                if (SelenideWidget.isDemoMode()) {
+                    moveMouseToComponent();
+                }
                 get().selectRadio(option);
             } else {
                 $(By.xpath(String.format("//label[contains(text(),'%s')]", option))).click();

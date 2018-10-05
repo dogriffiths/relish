@@ -44,6 +44,9 @@ public class DropDown extends InputWidget {
     public void setStringValue(String option)
     {
         assertVisible();
+        if (SelenideWidget.isDemoMode()) {
+            moveMouseToComponent();
+        }
         attempt(() ->
         {
             if (options().contains(option)) {
