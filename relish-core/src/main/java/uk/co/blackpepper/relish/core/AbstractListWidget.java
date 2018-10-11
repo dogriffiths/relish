@@ -52,7 +52,7 @@ public abstract class AbstractListWidget<T,U extends Widget> extends Widget<T> {
             @Override
             public void run()
             {
-                assertEquals(length(), assertionValues.size());
+                assertEquals(assertionValues.size(), length());
                 for (int i = 0; i < assertionValues.size(); i++) {
                     Object assertionValue = assertionValues.get(i);
                     if (assertionValue instanceof TableRow) {
