@@ -17,7 +17,7 @@ import java.awt.*;
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 
 /**
@@ -183,8 +183,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
                 return;
             }
             attempt(() -> {
-                assertEquals(get().innerHtml(), elementAtMyLocation().innerHtml());
-                assertEquals(get().toString(), elementAtMyLocation().toString());
+                assertTrue(get().innerHtml().contains(elementAtMyLocation().innerHtml()));
             }, 500, 4);
             return;
         }
