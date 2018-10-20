@@ -1,9 +1,6 @@
 package uk.co.blackpepper.relish.selenide;
 
-import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Configuration;
-import com.codeborne.selenide.SelenideElement;
-import com.codeborne.selenide.WebDriverRunner;
+import com.codeborne.selenide.*;
 import com.codeborne.selenide.ex.ElementNotFound;
 import com.codeborne.selenide.ex.ElementShould;
 import org.openqa.selenium.By;
@@ -28,6 +25,8 @@ public class SelenideWidget extends Widget<SelenideElement> {
     private By selector;
     private static boolean demoMode;
 
+    private static boolean edgeQuirksMode;
+
     /**
      * Instantiates a new Selenide widget.
      *
@@ -35,8 +34,16 @@ public class SelenideWidget extends Widget<SelenideElement> {
      * @param parent   the parent
      */
     public SelenideWidget(By selector, Component parent) {
-        this((parent instanceof SelenideWidget) ? ((SelenideWidget)parent).get().$(selector) : $(selector), parent);
+        this((parent instanceof SelenideWidget) ? ((SelenideWidget) parent).get().$(selector) : $(selector), parent);
         this.selector = selector;
+    }
+
+    public static boolean isEdgeQuirksMode() {
+        return edgeQuirksMode;
+    }
+
+    public static void setEdgeQuirksMode(boolean edgeQuirksMode) {
+        SelenideWidget.edgeQuirksMode = edgeQuirksMode;
     }
 
     public static void setDemoMode(boolean dm) {
@@ -75,7 +82,11 @@ public class SelenideWidget extends Widget<SelenideElement> {
         if (demoMode) {
             moveMouseToComponent();
         }
-        get().click();
+        if (isEdgeQuirksMode()) {
+            clickAtElementLocation();
+        } else {
+            get().click();
+        }
     }
 
     /**
@@ -91,6 +102,11 @@ public class SelenideWidget extends Widget<SelenideElement> {
         }
         SelenideElement element = get();
         actions().moveToElement(element, x, y).click().perform();
+    }
+
+    public void clickAtElementLocation() {
+        Point point = get().getCoordinates().onPage();
+        actions().moveToElement(Selenide.$("body"), point.x, point.y).click().perform();
     }
 
     /**
@@ -155,6 +171,11 @@ public class SelenideWidget extends Widget<SelenideElement> {
 
     @Override
     public void assertVisible() {
+        if (isEdgeQuirksMode()) {
+            if (get().isEnabled()) {
+                return;
+            }
+        }
         shouldBe(visible);
     }
 
@@ -213,8 +234,8 @@ public class SelenideWidget extends Widget<SelenideElement> {
             int diffX = targetX - currentX;
             int diffY = targetY - currentY;
             for (int i = 0; i < 10; i++) {
-                x = currentX + (int)(i * diffX / 10.0);
-                y = currentY + (int)(i * diffY / 10.0);
+                x = currentX + (int) (i * diffX / 10.0);
+                y = currentY + (int) (i * diffY / 10.0);
                 robot.mouseMove(x, y);
                 Thread.sleep(20);
             }
