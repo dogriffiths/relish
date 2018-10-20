@@ -179,12 +179,16 @@ public class SelenideWidget extends Widget<SelenideElement> {
     @Override
     public void assertVisible() {
         if (isEdgeQuirksMode()) {
-            if (get().isDisplayed()) {
-                return;
+            try {
+                shouldBe(visible);
+            } catch(AssertionError e) {
+                if (get().isDisplayed()) {
+                    return;
+                }
+                attempt(() -> {
+                    assertTrue(get().innerHtml().contains(elementAtMyLocation().innerHtml()));
+                }, 500, 4);
             }
-            attempt(() -> {
-                assertTrue(get().innerHtml().contains(elementAtMyLocation().innerHtml()));
-            }, 500, 4);
             return;
         }
         shouldBe(visible);
