@@ -1,12 +1,13 @@
 package uk.co.blackpepper.relish.selenide;
 
-import com.codeborne.selenide.*;
+import com.codeborne.selenide.Condition;
+import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
+import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.ex.ElementNotFound;
 import com.codeborne.selenide.ex.ElementShould;
-import org.openqa.selenium.By;
+import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import uk.co.blackpepper.relish.core.Component;
 import uk.co.blackpepper.relish.core.Widget;
@@ -15,6 +16,8 @@ import java.awt.*;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
+import static com.codeborne.selenide.Selenide.executeJavaScript;
+import static org.junit.Assert.assertEquals;
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 
 /**
@@ -176,9 +179,14 @@ public class SelenideWidget extends Widget<SelenideElement> {
     @Override
     public void assertVisible() {
         if (isEdgeQuirksMode()) {
-            if (get().isEnabled()) {
+            if (get().isDisplayed()) {
                 return;
             }
+            attempt(() -> {
+                assertEquals(get().innerHtml(), elementAtMyLocation().innerHtml());
+                assertEquals(get().toString(), elementAtMyLocation().toString());
+            }, 500, 4);
+            return;
         }
         shouldBe(visible);
     }
@@ -222,6 +230,19 @@ public class SelenideWidget extends Widget<SelenideElement> {
         int offsetY = size.height / 2;
         offsetY += size.height * (Math.random() - 0.5) / 2;
         moveMouseTo(new Point(location.getX() + offsetX, location.getY() + offsetY));
+    }
+
+    private SelenideElement elementAtMyLocation() {
+        SelenideElement selenideElement1 = get();
+        Point point = selenideElement1.getCoordinates().onPage();
+        org.openqa.selenium.Rectangle rect = selenideElement1.getRect();
+        int centerX = point.x + rect.width / 2;
+        int centerY = point.y + rect.height / 2;
+        WebElement o = (WebElement)executeJavaScript(
+                "return document.elementFromPoint(arguments[0], arguments[1])",
+                point.x,
+                point.y);
+        return $(o);
     }
 
     private void moveMouseTo(Point location) {
