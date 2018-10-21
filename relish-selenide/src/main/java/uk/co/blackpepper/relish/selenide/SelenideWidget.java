@@ -239,8 +239,16 @@ public class SelenideWidget extends Widget<SelenideElement> {
         SelenideElement selenideElement1 = get();
         Point point = selenideElement1.getCoordinates().onPage();
         org.openqa.selenium.Rectangle rect = selenideElement1.getRect();
-        int centerX = point.x + rect.width / 2;
-        int centerY = point.y + rect.height / 2;
+        int offsetX = rect.width / 2;
+        if (offsetX > 10) {
+            offsetX = 10;
+        }
+        int centerX = point.x + offsetX;
+        int offsetY = rect.height / 2;
+        if (offsetY > 10) {
+            offsetY = 10;
+        }
+        int centerY = point.y + offsetY;
         WebElement o = (WebElement)executeJavaScript(
                 "return document.elementFromPoint(arguments[0], arguments[1])",
                 point.x,
