@@ -13,6 +13,7 @@ import uk.co.blackpepper.relish.core.Component;
 import uk.co.blackpepper.relish.core.Widget;
 
 import java.awt.*;
+import java.util.List;
 
 import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
@@ -186,7 +187,9 @@ public class SelenideWidget extends Widget<SelenideElement> {
                     return;
                 }
                 attempt(() -> {
-                    assertTrue(get().innerHtml().contains(elementAtMyLocation().innerHtml()));
+                    String s1 = generateXPATH(elementAtMyLocation(), "");
+                    String pre = generateXPATH(get().toWebElement(), "");
+                    assertTrue(s1.startsWith(pre));
                 }, 500, 4);
             }
             return;
@@ -235,24 +238,6 @@ public class SelenideWidget extends Widget<SelenideElement> {
         moveMouseTo(new Point(location.getX() + offsetX, location.getY() + offsetY));
     }
 
-    private SelenideElement elementAtMyLocation() {
-        SelenideElement selenideElement1 = get();
-        Point point = selenideElement1.getCoordinates().onPage();
-        org.openqa.selenium.Rectangle rect = selenideElement1.getRect();
-        int maxOffsetX = rect.width;
-        int maxOffsetY = rect.height;
-        WebElement o = null;
-        for (int i = 1; (i < 10) && (o == null); i++) {
-            int centerX = point.x + (maxOffsetX * i / 10);
-            int centerY = point.y + (maxOffsetY * i / 10);
-            o = (WebElement)executeJavaScript(
-                    "return document.elementFromPoint(arguments[0], arguments[1])",
-                    centerX,
-                    centerY);
-        }
-        return $(o);
-    }
-
     private void moveMouseTo(Point location) {
         try {
             Robot robot = new Robot();
@@ -277,5 +262,44 @@ public class SelenideWidget extends Widget<SelenideElement> {
         } catch (AWTException | InterruptedException e) {
             e.printStackTrace();
         }
+    }
+
+    private WebElement elementAtMyLocation() {
+        SelenideElement selenideElement1 = get();
+        Point point = selenideElement1.getCoordinates().onPage();
+        org.openqa.selenium.Rectangle rect = selenideElement1.getRect();
+        int maxOffsetX = rect.width;
+        int maxOffsetY = rect.height;
+        WebElement o = null;
+        for (int i = 1; (i < 10) && (o == null); i++) {
+            int centerX = point.x + (maxOffsetX * i / 10);
+            int centerY = point.y + (maxOffsetY * i / 10);
+            o = (WebElement)executeJavaScript(
+                    "return document.elementFromPoint(arguments[0], arguments[1])",
+                    centerX,
+                    centerY);
+        }
+        return o;
+    }
+
+    private String generateXPATH(WebElement childElement, String current) {
+        String childTag = childElement.getTagName();
+        if(childTag.equals("html")) {
+            return "/html[1]"+current;
+        }
+        WebElement parentElement = childElement.findElement(By.xpath(".."));
+        List<WebElement> childrenElements = parentElement.findElements(By.xpath("*"));
+        int count = 0;
+        for(int i=0;i<childrenElements.size(); i++) {
+            WebElement childrenElement = childrenElements.get(i);
+            String childrenElementTag = childrenElement.getTagName();
+            if(childTag.equals(childrenElementTag)) {
+                count++;
+            }
+            if(childElement.equals(childrenElement)) {
+                return generateXPATH(parentElement, "/" + childTag + "[" + count + "]"+current);
+            }
+        }
+        return null;
     }
 }
