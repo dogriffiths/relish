@@ -19,6 +19,7 @@ import static com.codeborne.selenide.Condition.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 
 /**
@@ -187,9 +188,19 @@ public class SelenideWidget extends Widget<SelenideElement> {
                     return;
                 }
                 attempt(() -> {
-                    String s1 = generateXPATH(elementAtMyLocation(), "");
-                    String pre = generateXPATH(get().toWebElement(), "");
-                    assertTrue(s1.startsWith(pre));
+                    WebElement elementAtLocation = elementAtMyLocation();
+                    WebElement myElement = get().toWebElement();
+                    if ((elementAtLocation != null) && (myElement != null)) {
+                        String s1 = generateXPATH(elementAtLocation, "");
+                        String pre = generateXPATH(myElement, "");
+                        assertTrue(s1.startsWith(pre));
+                    } else {
+                        if (elementAtLocation == null) {
+                            fail("Cannot find the element at location");
+                            return;
+                        }
+                        fail("Cannot find my element");
+                    }
                 }, 500, 4);
             }
             return;
