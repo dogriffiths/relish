@@ -9,6 +9,7 @@ import com.codeborne.selenide.ex.ElementShould;
 import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.interactions.internal.Coordinates;
 import uk.co.blackpepper.relish.core.Component;
 import uk.co.blackpepper.relish.core.Widget;
 
@@ -106,7 +107,15 @@ public class SelenideWidget extends Widget<SelenideElement> {
             moveMouseTo(new Point(location.getX() + x, location.getY() + y));
         }
         SelenideElement element = get();
-        actions().moveToElement(element, x, y).click().perform();
+        if (isEdgeQuirksMode()) {
+            Coordinates coordinates = get().getCoordinates();
+            Point point = coordinates.onPage();
+            int clickX = point.x + x;
+            int clickY = point.y + y;
+            actions().moveToElement($("body"), clickX, clickY).click().perform();
+        } else {
+            actions().moveToElement(element, x, y).click().perform();
+        }
     }
 
     public void clickAtElementLocation() {
