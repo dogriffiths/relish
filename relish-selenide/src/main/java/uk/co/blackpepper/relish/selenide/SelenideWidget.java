@@ -187,9 +187,16 @@ public class SelenideWidget extends Widget<SelenideElement> {
                 if (get().isDisplayed()) {
                     return;
                 }
+                if (get().exists()) {
+                    return;
+                }
+                // Too small to locate but still has a size
+                if ((get().getRect().width == 1) || (get().getRect().height == 1)) {
+                    return;
+                }
                 attempt(() -> {
-                    WebElement elementAtLocation = elementAtMyLocation();
                     WebElement myElement = get().toWebElement();
+                    WebElement elementAtLocation = elementAtMyLocation();
                     if ((elementAtLocation != null) && (myElement != null)) {
                         String s1 = generateXPATH(elementAtLocation, "");
                         String pre = generateXPATH(myElement, "");
