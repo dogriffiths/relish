@@ -68,6 +68,13 @@ public abstract class SelenideAbstractListWidget<T extends SelenideWidget> exten
             .orElseThrow(() -> new RuntimeException("No cell found for predicate"));
     }
 
+    public T with(final String key, final String value) {
+        return findFirst(t -> {
+            String actual = t.get(key);
+            return (actual != null) && (actual.equals(value));
+        });
+    }
+
     /**
      * Items selector by.
      *
