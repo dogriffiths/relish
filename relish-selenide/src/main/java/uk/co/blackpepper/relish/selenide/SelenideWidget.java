@@ -40,7 +40,12 @@ public class SelenideWidget extends Widget<SelenideElement> {
      * @param parent   the parent
      */
     public SelenideWidget(By selector, Component parent) {
-        this((parent instanceof SelenideWidget) ? ((SelenideWidget) parent).get().$(selector) : $(selector), parent);
+        this((parent instanceof SelenideWidget)
+                        ? ((SelenideWidget) parent).get().$(selector)
+                        : ((parent instanceof SelenideAbstractListWidget)
+                        ? ((SelenideAbstractListWidget<SelenideWidget>) parent).get().$(selector)
+                        :$(selector)),
+                parent);
         this.selector = selector;
     }
 
@@ -192,7 +197,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
         if (isEdgeQuirksMode()) {
             try {
                 shouldBe(visible);
-            } catch(AssertionError e) {
+            } catch (AssertionError e) {
                 if (get().isDisplayed()) {
                     return;
                 }
@@ -301,7 +306,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
         for (int i = 1; (i < 10) && (o == null); i++) {
             int centerX = point.x + (maxOffsetX * i / 10);
             int centerY = point.y + (maxOffsetY * i / 10);
-            o = (WebElement)executeJavaScript(
+            o = (WebElement) executeJavaScript(
                     "return document.elementFromPoint(arguments[0], arguments[1])",
                     centerX,
                     centerY);
@@ -311,20 +316,20 @@ public class SelenideWidget extends Widget<SelenideElement> {
 
     private String generateXPATH(WebElement childElement, String current) {
         String childTag = childElement.getTagName();
-        if(childTag.equals("html")) {
-            return "/html[1]"+current;
+        if (childTag.equals("html")) {
+            return "/html[1]" + current;
         }
         WebElement parentElement = childElement.findElement(By.xpath(".."));
         List<WebElement> childrenElements = parentElement.findElements(By.xpath("*"));
         int count = 0;
-        for(int i=0;i<childrenElements.size(); i++) {
+        for (int i = 0; i < childrenElements.size(); i++) {
             WebElement childrenElement = childrenElements.get(i);
             String childrenElementTag = childrenElement.getTagName();
-            if(childTag.equals(childrenElementTag)) {
+            if (childTag.equals(childrenElementTag)) {
                 count++;
             }
-            if(childElement.equals(childrenElement)) {
-                return generateXPATH(parentElement, "/" + childTag + "[" + count + "]"+current);
+            if (childElement.equals(childrenElement)) {
+                return generateXPATH(parentElement, "/" + childTag + "[" + count + "]" + current);
             }
         }
         return null;
