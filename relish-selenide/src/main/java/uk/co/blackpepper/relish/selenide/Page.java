@@ -93,4 +93,13 @@ public class Page extends Component
     {
         open(URI.create(Configuration.baseUrl).resolve(getPath()).toString());
     }
+
+    /**
+     * Page title page title.
+     *
+     * @return the page title
+     */
+    public PageTitle pageTitle() {
+        return new PageTitle(this);
+    }
 }
