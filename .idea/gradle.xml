@@ -8,12 +8,6 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/examples" />
-            <option value="$PROJECT_DIR$/examples/selenide" />
-            <option value="$PROJECT_DIR$/examples/selenide/example-selenide" />
-            <option value="$PROJECT_DIR$/relish-core" />
-            <option value="$PROJECT_DIR$/relish-espresso" />
-            <option value="$PROJECT_DIR$/relish-selenide" />
           </set>
         </option>
         <option name="useAutoImport" value="true" />

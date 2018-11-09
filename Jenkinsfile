@@ -1,5 +1,11 @@
 #!groovy
 
+slack 'Starting build pipeline for HFKotlinWeb'
+
+properties properties: [
+    disableConcurrentBuilds()
+]
+
 pipeline {
     agent any
 
@@ -13,64 +19,56 @@ pipeline {
                 checkout scm
             }
         }
-        stage('Build') {
+        
+        stage('Clean') {
             steps {
                 script {
-                    lock(resource: 'relish-dev') {
-                        sh 'sleep 10'
-                        sh 'if [ -f /tmp/myserver.pid ]; then (kill $(cat /tmp/myserver.pid) || echo "Old server gone"); fi'
-                        sh 'rm -f /tmp/myserver.pid'
-                        sh 'rm -f /tmp/myserver.lock'
-                        sh '/usr/local/sbin/daemonize ' +
-                                '-E BUILD_ID=dontKillMe ' +
-                                '-p /tmp/myserver.pid ' +
-                                '-l /tmp/myserver.lock ' +
-                                '-o /tmp/myserver.out ' +
-                                '-c "$PWD/examples/selenide/website" ' +
-                                '/usr/bin/python -m SimpleHTTPServer 2>&1 > /tmp/myserver.runout'
-                        if(isUnix()){
-                            sh './gradlew clean build check unitCoverageReport sonarqube --info --stacktrace'
-                        }
-                        else{
-                            bat 'gradlew.bat clean build check unitCoverageReport sonarqube --info --stacktrace'
-                        }
-                    }
+                    sh 'make clean'
                 }
             }
         }
-        stage('Publish') {
+
+        stage('Build') {
+            steps {
+                        script {
+                            nvm('version':'v8.10.0',
+                                'nvmInstallURL': 'https://raw.githubusercontent.com/creationix/nvm/v0.33.4/install.sh',
+                                'nvmNodeJsOrgMirror': 'https://nodejs.org/dist',
+                                'nvmIoJsOrgMirror': 'https://nodejs.org/dist'
+                               ) {
+                                sh 'make build'
+                            }
+                            slack 'Site built'
+                        }
+            }
+        }
+
+        stage('Publish Site') {
             steps {
                 script {
-                    if (env.BRANCH_NAME == 'master') {
-                        sh "git tag -a '0.0.${BUILD_NUMBER}' -m 'Release 0.0.${BUILD_NUMBER}'"
-                        sh "git push --tags"
-                        sh "github-release release --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'Relish' --description 'Version 0.0.${BUILD_NUMBER}' --pre-release"
-                        sh "cp relish-core/build/libs/relish-core-1.0-SNAPSHOT.jar 'relish-core-0.0.${BUILD_NUMBER}.jar'"
-                        sh "cp relish-selenide/build/libs/relish-selenide-1.0-SNAPSHOT.jar 'relish-selenide-0.0.${BUILD_NUMBER}.jar'"
-                        sh "cp relish-espresso/build/outputs/aar/relish-espresso-release.aar 'relish-espresso-0.0.${BUILD_NUMBER}.aar'"
-                        sh "github-release upload --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'relish-core-0.0.${BUILD_NUMBER}.jar' --file 'relish-core-0.0.${BUILD_NUMBER}.jar'"
-                        sh "github-release upload --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'relish-selenide-0.0.${BUILD_NUMBER}.jar' --file 'relish-selenide-0.0.${BUILD_NUMBER}.jar'"
-                        sh "github-release upload --user dogriffiths --repo relish --tag '0.0.${BUILD_NUMBER}' --name 'relish-espresso-0.0.${BUILD_NUMBER}.aar' --file 'relish-espresso-0.0.${BUILD_NUMBER}.aar'"
-                        sh "rm -f 'relish-core-0.0.${BUILD_NUMBER}.jar'"
-                        sh "rm -f 'relish-selenide-0.0.${BUILD_NUMBER}.jar'"
-                        sh "rm -f 'relish-espresso-0.0.${BUILD_NUMBER}.aar'"
+                    if (env.BRANCH_NAME == 'website') {
+                        sh 'make publish'
+                        slack "Web site published"
                     }
                 }
             }
         }
     }
+
     post {
         always {
             script {
-                junit '**/TEST-*.xml'
-                archiveArtifacts allowEmptyArchive: true, artifacts: 'relish-core/build/libs/relish-core-*.jar'
-                archiveArtifacts allowEmptyArchive: true, artifacts: 'relish-selenide/build/libs/relish-selenide-*.jar'
-                archiveArtifacts allowEmptyArchive: true, artifacts: 'relish-espresso/build/outputs/aar/relish-espresso-release.aar'
-                sh 'if [ -f /tmp/myserver.pid ]; then (kill $(cat /tmp/myserver.pid) || echo "Old server gone"); fi'
-                sh 'rm -f /tmp/myserver.pid'
-                sh 'rm -f /tmp/myserver.lock'
+                archiveArtifacts allowEmptyArchive: true, artifacts: 'tests/src/test/resources/features/**'
+                cucumber 'tests/build/cucumber.json'
             }
+            step([$class: 'CukedoctorPublisher', featuresDir: 'archive/tests/src/test/resources/features', format: 'HTML', hideFeaturesSection: false, hideScenarioKeyword: false, hideStepTime: false, hideSummary: false, hideTags: false, numbered: true, sectAnchors: true, title: 'Living Documentation', toc: 'RIGHT'])
+        }
+        failure {
+            slack "Build failed: ${currentBuild.result}", '#ff0000'
         }
     }
 }
 
+def slack(String msg, String color = '#000000') {
+    slackSend channel: 'builds', color: color, message: msg, teamDomain: 'aspenshore', tokenCredentialId: 'timekeeper-slack'
+}

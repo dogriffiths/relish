@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Scenario: Can get to table of contents" tests="9" skipped="0" failures="0" errors="0" timestamp="2018-11-07T09:42:54" hostname="computer" time="120.906">
+  <properties/>
+  <testcase name="When I launch the app" classname="Scenario: Can get to table of contents" time="0.0"/>
+  <testcase name="And I navigate to 'Table of contents'" classname="Scenario: Can get to table of contents" time="0.0"/>
+  <testcase name="Then the title will be 'Table of contents'" classname="Scenario: Can get to table of contents" time="0.0"/>
+  <testcase name="And I will see the following table of contents:" classname="Scenario: Can get to table of contents" time="0.002"/>
+  <testcase name="When I open chapter 'getting started'" classname="Scenario: Can get to table of contents" time="0.0"/>
+  <testcase name="Then I see this chapter" classname="Scenario: Can get to table of contents" time="0.0"/>
+  <testcase name="When I navigate to 'Head First Kotlin'" classname="Scenario: Can get to table of contents" time="0.0"/>
+  <testcase name="Then the home page will be visible" classname="Scenario: Can get to table of contents" time="0.0"/>
+  <testcase name="classMethod" classname="Scenario: Can get to table of contents" time="122.874"/>
+  <system-out><![CDATA[
+  Scenario: Welcome is visible                ?[90m# features/0001-can-be-welcomed.feature:3?[0m
+    ?[32mWhen ?[0m?[32mI launch the app?[0m                     ?[90m# SomeSteps.iLaunchTheApp()?[0m
+    ?[32mThen ?[0m?[32mI will see the welcome?[0m               ?[90m# SomeSteps.iWillSeeTheWelcome()?[0m
+    ?[32mAnd ?[0m?[32mthe title will be '?[0m?[32m?[1mHead First Kotlin?[0m?[32m'?[0m ?[90m# SomeSteps.theTitleWillBeHeadFirstKotlin(String)?[0m
+]]></system-out>
+  <system-err><![CDATA[Nov 07, 2018 9:42:53 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

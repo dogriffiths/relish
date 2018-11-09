@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Scenario: Can get to the source code" tests="7" skipped="0" failures="0" errors="0" timestamp="2018-11-07T09:44:57" hostname="computer" time="4.459">
+  <properties/>
+  <testcase name="When I launch the app" classname="Scenario: Can get to the source code" time="0.0"/>
+  <testcase name="And I navigate to 'Source code'" classname="Scenario: Can get to the source code" time="0.001"/>
+  <testcase name="Then the title will be 'Source code'" classname="Scenario: Can get to the source code" time="0.0"/>
+  <testcase name="And I will see a link to the Github repo" classname="Scenario: Can get to the source code" time="0.0"/>
+  <testcase name="When I navigate to 'Head First Kotlin'" classname="Scenario: Can get to the source code" time="0.0"/>
+  <testcase name="Then the home page will be visible" classname="Scenario: Can get to the source code" time="0.0"/>
+  <testcase name="classMethod" classname="Scenario: Can get to the source code" time="6.735"/>
+  <system-out><![CDATA[
+  Scenario: Can get to table of contents            ?[90m# features/0001-can-be-welcomed.feature:8?[0m
+    ?[32mWhen ?[0m?[32mI launch the app?[0m                           ?[90m# SomeSteps.iLaunchTheApp()?[0m
+    ?[32mAnd ?[0m?[32mI navigate to '?[0m?[32m?[1mTable of contents?[0m?[32m'?[0m           ?[90m# SomeSteps.iNavigateToTableOfContents(String)?[0m
+    ?[32mThen ?[0m?[32mthe title will be '?[0m?[32m?[1mTable of contents?[0m?[32m'?[0m      ?[90m# SomeSteps.theTitleWillBeHeadFirstKotlin(String)?[0m
+    ?[32mAnd ?[0m?[32mI will see the following table of contents:?[0m ?[90m# SomeSteps.iWillSeeTheFollowingTableOfContents(TableRow>)?[0m
+    ?[32mWhen ?[0m?[32mI open chapter '?[0m?[32m?[1mgetting started?[0m?[32m'?[0m           ?[90m# SomeSteps.iOpenChapterGettingStarted(String)?[0m
+    ?[32mThen ?[0m?[32mI see this chapter?[0m                         ?[90m# SomeSteps.iSeeThisChapter(TableRow>)?[0m
+    ?[32mWhen ?[0m?[32mI navigate to '?[0m?[32m?[1mHead First Kotlin?[0m?[32m'?[0m          ?[90m# SomeSteps.iNavigateToTableOfContents(String)?[0m
+    ?[32mThen ?[0m?[32mthe home page will be visible?[0m              ?[90m# SomeSteps.theHomePageWillBeVisible()?[0m
+]]></system-out>
+  <system-err><![CDATA[Nov 07, 2018 9:44:56 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

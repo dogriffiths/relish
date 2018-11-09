@@ -1,0 +1,96 @@
+.Content-container {
+    font-size: 16px;
+    font-weight: 400;
+    font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+    letter-spacing: -0.00666667px;
+    line-height: 24.4333px;;
+    overflow-wrap: break-word;
+    text-rendering: optimizelegibility;
+    margin-top: 48px;
+    padding-top: 12px;
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.Content-container h1, .Content-container h2, .Content-container h3 {
+    color: rgba(0, 0, 0, 0.84);
+    font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Geneva, Arial, sans-serif;
+    letter-spacing: -0.516667px;
+    font-weight: 600;
+    margin-left: -2.13333px;
+    margin-top: 16px;
+    margin-bottom: 0;
+    margin-right: 0;
+    padding-top: 16px;
+    overflow-wrap: break-word;
+    text-rendering: optimizelegibility;
+}
+
+.Content-container h1 {
+    margin-top: 4px;
+    font-size: 28px;
+    line-height: 36px;
+}
+
+.Content-container h2 {
+    margin-top: 16px;
+    font-size: 20px;
+    line-height: 32px;
+}
+
+.Content-container h3 {
+    margin-top: 16px;
+    font-size: 16px;
+    line-height: 28px;
+}
+
+.Content-inner {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 800px;
+}
+
+@media screen and (min-width: 600px) {
+    .Content-container {
+        margin-top: 56px;
+    }
+}
+
+@media screen and (min-width: 900px) {
+    .Content-container {
+        font-size: 21px;
+        line-height: 33.1833px;
+        letter-spacing: -0.0666667px;
+        margin-top: 64px;
+        padding-left: auto;
+        padding-right: auto;
+    }
+
+    .Content-container h1, .Content-container h2, .Content-container h3 {
+        letter-spacing: -0.516667px;
+        font-weight: 600;
+        margin-left: -2.13333px;
+        margin-bottom: 0;
+        margin-right: 0;
+    }
+
+    .Content-container h1 {
+        margin-top: 12px;
+        font-size: 34px;
+    }
+
+    .Content-container h2 {
+        margin-top: 16px;
+        font-size: 24px;
+        line-height: 36px;
+    }
+
+    .Content-container h3 {
+        margin-top: 16px;
+        font-size: 20px;
+        line-height: 32px;
+    }
+
+    .Article-content {
+    }
+}

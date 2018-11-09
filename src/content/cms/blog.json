@@ -1,0 +1,57 @@
+{
+  "2019YearAhead": {
+    "title": "The year ahead for Kotlin",
+    "author": "Head First Labs",
+    "image": "images/11254.jpg",
+    "date": "2018-12-01 13:06",
+    "tags": [
+      "Predictions",
+      2019
+    ],
+    "preview": "2019 will be the year of Kotlin 1.3. For developers who have been …",
+    "content": "\n\n2019 will be the year of Kotlin 1.3. For developers who have been tentatively looking at Kotlin, the introduction of 1.3 means it's the perfect time to jump in with both feet. \n\nWhat are the key features of 1.3? \n\nCo-routines are no longer experimental. They are like lightweight threads which allow code to scale-out efficiently. Scaling always used to be a usability problem; the worse your app was at scaling, the worse the experience was for the users. The cloud has changed all that. Now scalability is a financial problem. The better your app is at scaling, the lower your running costs. \n\n2018 saw much activity in making traditional enterprise Java frameworks--like Spring Boot--more Kotlin-friendly However, newer frameworks like [Ktor](https://github.com/ktorio/ktor) are breathing new life into the server-side. Kotlin co-routines are at the heart of Ktor, alongside an application model that is similar to the Node.js Express library. \n\n2019 is also the year when Kotlin is likely to see significant use beyond the Java world. Multi-platform builds allow you to compile the same code for the JVM, for JavaScript and (using the beta version of Kotlin/Native) for iOS, Linux, Mac, Windows, and WebAssembly. While possible, it's unlikely that many people will choose to build client-side apps entirely in Kotlin. JavaScript would appear to have an increasingly indomitable position in the browser. However, Kotlin is proving itself to be an excellent language for library-builders. The same code can build a library for Java, JavaScript, C, and Swift. \n\nIf you are, for example, a bank  that performs some complex financial calculation on the server. Kotlin allows you to convert that server-code into a Kotlin library which can run on both the server (where processing cycles are expensive) and on the client (where processing cycles are free). Multi-platform builds can improve the experience for your users, and also take some of the load off your server.\n\nFinally, looking beyond Kotlin 1.3, 2019 is also the year when the language is likely to acquire features to catch bugs at compile time. Keep a lookout for features that reduce/eliminate shared mutable state in concurrent code, and also for first-class immutability support in the language. \n\nArchitects and tech leads should start to pay very serious attention to Kotlin in the year ahead.",
+    "iso8601Date": "2018-12-01T13:06:00+00:00",
+    "basename": "2019YearAhead"
+  }
+,
+  "Another": {
+    "title": "Merry Christmas",
+    "author": "David Griffiths",
+    "date": "2018-12-25 13:06",
+    "tags": [
+      "Example"
+    ],
+    "preview": "Ding-dong merrily on high....",
+    "content": "\nDing-dong merrily on high....\n\n",
+    "iso8601Date": "2018-12-25T13:06:00+00:00",
+    "basename": "Another"
+  }
+,
+  "LinksOfTheWeek": {
+    "title": "Links of the week Nov 3rd, 2018",
+    "author": "David Griffiths",
+    "date": "2018-11-03 11:11",
+    "tags": [
+      "Example"
+    ],
+    "preview": "Here are the most interesting Kotlin articles we've found  this …",
+    "content": "\nHere are the most interesting Kotlin articles we've found  this week:\n\n## Kotlin Native released in Beta\n\nKotlin Native is Kotlin's pathway to non-Java platforms like iOS. Kotlin Native works by compiling Kotlin code down to a format supported by the LLVM (Low-Level Virtual Machine). The LLVM compiler framework can then compiled that code to native code for pretty much any platform.\n\nHere's the [announcement](https://blog.jetbrains.com/kotlin/2018/08/kotlin-native-0-8-2/#comments)\n\n## 7 things any Java developer should know\n\n[A nice intro](https://medium.com/digitalfrontiers/7-things-any-java-developer-should-know-when-starting-with-kotlin-6062d12aa902) for Java developers converting over to Kotlin.\n\nAnd of course the big one...\n\n## Kotlin 1.3 released\n\nSee the announcement [here](https://blog.jetbrains.com/kotlin/2018/10/kotlin-1-3/)",
+    "iso8601Date": "2018-11-03T11:11:00+00:00",
+    "basename": "LinksOfTheWeek"
+  }
+,
+  "learningTips": {
+    "title": "10 Ways to Boost Your Learning Power",
+    "author": "Head First Labs",
+    "image": "images/brainRules.jpg",
+    "date": "2018-11-12 13:06",
+    "tags": [
+      "Learning",
+      "Hacks"
+    ],
+    "preview": "The tips below are adapted from the rules in John Medina’s excellent …",
+    "content": "\n\nThe tips below are adapted from the rules in John Medina’s excellent book [Brain Rules](http://www.amazon.com/Brain-Rules-Updated-Expanded-Principles/dp/098326337X/ref=sr_1_1?ie=UTF8&qid=1409579494&sr=8-1&keywords=brain+rules). We use them extensively when writing Head First books. They’ve helped us and we think they’ll help you too.\n\n# 1 Study around people you like and trust\nHuman beings evolved as social creatures. We could hunt stronger animals like mammoths only by working in groups and being social. So our brains work best when we are in a group that makes us feel safe and supported. Head First books are populated with characters that you will come to know and feel safe with. They will express the same kinds of thoughts and feelings that you might be thinking and feeling.\n\nWhen you’re learning a new subject do it in the company of people you feel safe with. Who know and understand you.\n\n# 2 Exercise regularly\nYou probably think that your brain runs on coffee — but it doesn’t. Your brain runs on oxygen. And the best way of getting oxygen in to your brain is by exercise. Exercise will also reduce the free radicals that flow through your brain. Free radicals can cause memory loss and other stuff, like strokes, heart attacks and wrinkles.\n\nTo make sure you keep learning, keep exercising. You will learn more, remember more and live longer.\n\n# 3 Get plenty of sleep\nWorking longer doesn’t mean that you’re working better. It might feel like slugging through a topic until 3 in the morning is productive, but it isn’t. When you’re learning something new, try to learn small amounts and then sleep on them. That’s why our chapters are just long enough for a single learning session. Do one chapter a day, then have a good night’s sleep to consolidate the learning.\n\nIf you’re feeling tired, take a nap. A 20 minute nap will refresh you as much as a cup of coffee. If you can, take a nap in the early afternoon. Churchill used to and he said that he got twice as much done because\n\nYou get two days in one — well, at least one and a half.\n\n# 4 Avoid stress\nStress is bad for your brain in many ways. First of all, stress has a physical effect on your entire body, not just your brain. The chemicals released as a result of stress create small pits in your artery walls. These will trap passing fats which can cause heart attacks. Stress also ruins concentration. A huge amount of your brain is busy thinking about the stress and it won’t be learning what you want it to.\n\nPrioritize. Simplify. Take time off and don’t spend too long online.\n\n# 5 Don’t multi-task\nYour brain can’t multi-task. It doesn’t matter if you’re a man, or a woman — your brain can’t do it. Sure, you can walk and chew gum at the same time, but that’s just your cerebellum: the mini-brain seated just below your real brain. The higher brain can only do one thing at a time. The only way it can appear to do several things at once is by task-switching. Task switching sucked for operating systems and it sucks for thinking.\n\nDon’t read a book and Twitter at the same time. Get a Kindle. Kindle’s are terrible at connecting to the ‘net, so they’re great devices for reading on. Don’t study while watching videos.\n\n# 6 Repeat. Repeat. Répète.\nDon’t be afraid to repeat things. We repeat many things in Head First books. And that’s a good thing. Repetition is one of the most powerful learning techniques. Try to repeat an idea in different and complex ways. If you want to learn someone’s name, repeat the sound of the name. Then think about the order of the letters in the name. Then think about other ways the name might have been spelled. Think about what other things sound like that name.\n\nThe more you repeat, and the more complex the repetitions, the more likely you are to remember. We repeat many things in Head First books. But we already said that.\n\n# 7 Stimulate as many senses as you can\nYour senses work together to help you understand your environment. Our brains make strong associations between different sensory stimuli. When we were hunter-gatherers we used sight, sound, smell and touch to take in as much information as we could. Now we stare at page of text and wonder why we can’t remember it. Try to learn in a rich environment. When you’re making notes, use colors.\n\nIf you learn a programming topic when you can smell coffee, you will remember 10–50% more of that topic if you try to recall it when you can smell coffee.\n\n# 8 Work visually — your most powerful learning sense\nRead some information and three days later you might remember 10% of it. If it has a picture with it, then three days later you’ll remember 65% of it. Your brain is looking out for tigers. It’s not looking out for Beware of the tiger signs. We use pictures a lot in Head First books. If you just look at the pictures in a Head First chapter you should still have a pretty good idea of what’s being taught.\n\nVisualizing things is a great way of understanding a topic. If the thing you’re trying to learn has no pictures, try adding your own. If it’s a paper book, doodle in the margins.\n\nLearn to mind map.\n\n# 9 Listen to music\nYour high-level brain can’t do more than one thing at once. But if you listen to music at the same time as working, you can concentrate more. The fact that parrot’s like to dance suggests that a lot of music listening is actually done by the low-level parts of your brain. No one’s really sure. But if you want to concentrate, plug yourself in to music that you know well and like. It may just be enough to keep your lower brain functions busy and let you sneak some learning past them.\n\nLearning to play a musical instrument also appears to stimulate brain power. Brilliant minds love to play musical instruments. Donald Knuth and Alan Kay play pipe organs. Richard Feynman played the bongos.\n\n# 10 Experiment to find out what works for you\nAll brains are wired differently. That’s not a metaphor. Scientists have discovered by using probes to stimulate points in volunteers’ brains that every single brain is wired differently. Different things stimulate different people in different ways. Make a note of which learning techniques work best for you. Find a place that is the most productive place for you to work. It might be a library. It might be a laundromat.\n\nDon’t be afraid to be different.\n\n",
+    "iso8601Date": "2018-11-12T13:06:00+00:00",
+    "basename": "learningTips"
+  }
+}

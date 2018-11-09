@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Scenario: Can open a blog" tests="8" skipped="0" failures="0" errors="0" timestamp="2018-11-07T09:45:03" hostname="computer" time="8.263">
+  <properties/>
+  <testcase name="When I launch the app" classname="Scenario: Can open a blog" time="0.0"/>
+  <testcase name="And I navigate to 'Blog'" classname="Scenario: Can open a blog" time="0.0"/>
+  <testcase name="Then the title will be 'Blog'" classname="Scenario: Can open a blog" time="0.0"/>
+  <testcase name="When I open the first blog article with title 'title'" classname="Scenario: Can open a blog" time="0.0"/>
+  <testcase name="Then I can see a blog article with title 'title'" classname="Scenario: Can open a blog" time="0.001"/>
+  <testcase name="When I choose to return to blogs" classname="Scenario: Can open a blog" time="0.0"/>
+  <testcase name="Then the title will be 'Blog'" classname="Scenario: Can open a blog" time="0.001"/>
+  <testcase name="classMethod" classname="Scenario: Can open a blog" time="10.148"/>
+  <system-out><![CDATA[
+  Scenario: Can get to the source code       ?[90m# features/0001-can-be-welcomed.feature:36?[0m
+    ?[32mWhen ?[0m?[32mI launch the app?[0m                    ?[90m# SomeSteps.iLaunchTheApp()?[0m
+    ?[32mAnd ?[0m?[32mI navigate to '?[0m?[32m?[1mSource code?[0m?[32m'?[0m          ?[90m# SomeSteps.iNavigateToTableOfContents(String)?[0m
+    ?[32mThen ?[0m?[32mthe title will be '?[0m?[32m?[1mSource code?[0m?[32m'?[0m     ?[90m# SomeSteps.theTitleWillBeHeadFirstKotlin(String)?[0m
+    ?[32mAnd ?[0m?[32mI will see a link to the Github repo?[0m ?[90m# SomeSteps.iWillSeeALinkToTheGithubRepo()?[0m
+    ?[32mWhen ?[0m?[32mI navigate to '?[0m?[32m?[1mHead First Kotlin?[0m?[32m'?[0m   ?[90m# SomeSteps.iNavigateToTableOfContents(String)?[0m
+    ?[32mThen ?[0m?[32mthe home page will be visible?[0m       ?[90m# SomeSteps.theHomePageWillBeVisible()?[0m
+]]></system-out>
+  <system-err><![CDATA[Nov 07, 2018 9:45:03 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

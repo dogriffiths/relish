@@ -1,0 +1,52 @@
+.Article-image {
+    width: 150px;
+    height: 120px;
+    float: right;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.07);
+    border-width: 15px;
+    border-style: solid;
+    border-color: white;
+    transform: rotate(5deg);
+}
+
+.Article-content pre {
+    overflow-x: scroll;
+    font-size: 12px;
+    line-height: 16px;
+    background-color: #eee;
+    padding: 8px;
+}
+
+table {
+    border-spacing: 0;
+}
+
+td, th {
+    text-align: left;
+    font-family: Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    padding: 0 8px 0 8px;
+    line-height: 20px;
+}
+
+th {
+    border-bottom-style: solid;
+    border-width: 1px;
+}
+
+tr:nth-child(even) {
+    background: #eee;
+}
+
+@media screen and (min-width: 900px) {
+    td, th {
+        font-size: 16px;
+        line-height: 28px;
+    }
+
+    .Article-content pre {
+        font-size: 16px;
+        line-height: 20px;
+        padding: 12px;
+    }
+}

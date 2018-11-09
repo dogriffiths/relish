@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Scenario: Welcome is visible" tests="4" skipped="0" failures="0" errors="0" timestamp="2018-11-07T09:42:50" hostname="computer" time="1.457">
+  <properties/>
+  <testcase name="When I launch the app" classname="Scenario: Welcome is visible" time="0.0"/>
+  <testcase name="Then I will see the welcome" classname="Scenario: Welcome is visible" time="0.0"/>
+  <testcase name="And the title will be 'Head First Kotlin'" classname="Scenario: Welcome is visible" time="0.0"/>
+  <testcase name="classMethod" classname="Scenario: Welcome is visible" time="6.448"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+Nov 07, 2018 9:42:49 AM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>
