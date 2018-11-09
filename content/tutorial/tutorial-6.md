@@ -1,7 +1,7 @@
 ---
 title: Deleting Tasks
 author: David Griffiths
-image: images/Relish.png
+image: images/delete-tasks.png
 date: "2018-11-09 07:59"
 tags:
   - Tutorial

@@ -1,5 +1,5 @@
 import blog from './cms/blog';
-import chapters from './cms/chapters';
+import tutorial from './cms/tutorial';
 import moment from "moment";
 
 const blogArticles = Object.keys(blog)
@@ -8,7 +8,7 @@ const blogArticles = Object.keys(blog)
     .sort((a, b) => (a.date === b.date) ? 0 : ((a.date < b.date) ? 1 : -1))
 ;
 
-const allChapters =  Object.keys(chapters)
-    .map(key => {return {id: key, category: 'chapters', ...chapters[key]}});
+const allLessons =  Object.keys(tutorial)
+    .map(key => {return {id: key, category: 'tutorial', ...tutorial[key]}});
 
-export {blogArticles, allChapters};
+export {blogArticles, allLessons};

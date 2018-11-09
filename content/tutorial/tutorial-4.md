@@ -1,7 +1,7 @@
 ---
 title: Adding Tasks
 author: David Griffiths
-image: images/Relish.png
+image: images/addformpage.png
 date: "2018-11-09 07:59"
 tags:
   - Tutorial
@@ -135,29 +135,10 @@ The `addButton()` and `saveButton()` components (like all `selenide-relish` widg
 
 The `set()` method accepts a `TableRow` object and uses it to update all of the sub-components whose names match the columns in the `TableRow`. So because our table looks like this:
 
-<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
-
-
-<colgroup>
-<col  class="left" />
-</colgroup>
-<thead>
-<tr>
-<th scope="col" class="left">Name</th>
-</tr>
-</thead>
-
-<tbody>
-<tr>
-<td class="left">Buy some bread</td>
-</tr>
-
-
-<tr>
-<td class="left">Buy some milk</td>
-</tr>
-</tbody>
-</table>
+| Name           |
+|----------------|
+| Buy some bread |
+| Buy some milk  |
 
 The `set()` method will convert the (only) column "Name" into camel-case, and look for a `name()` method on the `AddTaskPage` object. In our case, this `name()` method returns an `InputText` field, and Relish will tell the `InputText` component to type in the strings "Buy some bread" and "Buy some milk" on each of the occasions that it visits the page.
 

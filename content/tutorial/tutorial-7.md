@@ -1,13 +1,11 @@
 ---
 title: Editing Tasks
 author: David Griffiths
-image: images/Relish.png
+image: images/edit-task.png
 date: "2018-11-09 07:59"
 tags:
   - Tutorial
 ---
-
-&lt; [Deleting tasks](./tutorial-6.html) | ^ [Tutorial](./tutorial.html) | [Custom components](./tutorial-8.html) &gt;
 
 Which brings us to the final scenario for this feature: editing tasks
 
@@ -31,7 +29,7 @@ Which brings us to the final scenario for this feature: editing tasks
         | Buy some cream | Medium   |
         | Buy some water | High     |
 
-We'll need a new page for editing tasks. It will be virtually identical to to the `AddTaskPage`:
+We'll need a new page for editing tasks. It will be virtually identical to the `AddTaskPage`:
 
 ![img](images/edit-task.png)
 

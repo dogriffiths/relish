@@ -1,7 +1,7 @@
 ---
 title: Adding more fields
 author: David Griffiths
-image: images/Relish.png
+image: images/tasks-with-priorities.png
 date: "2018-11-09 07:59"
 tags:
   - Tutorial

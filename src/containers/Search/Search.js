@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ArticleList from "../../components/ArticleList/ArticleList";
-import {blogArticles, allChapters} from "../../content";
+import {blogArticles, allLessons} from "../../content";
 import {withRouter} from "react-router-dom";
 
 class Search extends Component {
@@ -25,7 +25,7 @@ class Search extends Component {
         const blogResults = terms ? blogArticles.filter(a => {
             return a.title.toUpperCase().indexOf(uTerms) !== -1 || a.content.toUpperCase().indexOf(uTerms) !== -1;
         }) : [];
-        const chapterResults = terms ? allChapters.filter(a => {
+        const chapterResults = terms ? allLessons.filter(a => {
             return a.title.toUpperCase().indexOf(uTerms) !== -1 || a.content.toUpperCase().indexOf(uTerms) !== -1;
         }) : [];
 

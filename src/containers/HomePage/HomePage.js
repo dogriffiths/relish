@@ -20,7 +20,7 @@ class HomePage extends Component {
 
     render() {
         return <div>
-            <AppBarAndMenu title='Head First Kotlin'>
+            <AppBarAndMenu title='Relish Testing'>
                 <Content>
                     <div className='Home-main'>
                         <ArticleView article={home.main}/>
@@ -28,9 +28,6 @@ class HomePage extends Component {
                             <h2>Recent posts</h2>
                             <ArticleList articles={this.state.articles}/>
                         </section>
-                    </div>
-                    <div className='Home-other'>
-                        <TwitterTimeline/>
                     </div>
                 </Content>
             </AppBarAndMenu>

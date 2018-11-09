@@ -6,12 +6,12 @@ import uk.co.blackpepper.relish.selenide.SelenideWidget;
 
 public class ChapterPage extends BasicPage {
     public ChapterPage() {
-        super("/chapters");
+        super("/tutorial");
     }
 
     @Override
     protected boolean matchesUrl(String currentUrl) {
-        return currentUrl.matches(".+/chapters/[^/]+");
+        return currentUrl.matches(".+/tutorial/[^/]+");
     }
 
     public SelenideWidget subtitle() {
