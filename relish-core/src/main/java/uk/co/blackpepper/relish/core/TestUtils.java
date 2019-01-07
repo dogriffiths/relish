@@ -4,6 +4,8 @@ package uk.co.blackpepper.relish.core;
  * The type Test utils.
  */
 public class TestUtils {
+    private final static double slowDown = Double.valueOf(System.getProperty("relish.slowDown", "1.0"));
+
     private TestUtils() {
         // Should not be instantiated
     }
@@ -24,7 +26,7 @@ public class TestUtils {
                 succeeded = true;
             } catch (Error | Exception e1) {
                 try {
-                    Thread.sleep(pause);
+                    Thread.sleep((long)(pause * slowDown));
                 } catch (InterruptedException e2) {
                     Thread.currentThread().interrupt();
                 }
