@@ -100,6 +100,18 @@ public class SelenideWidget extends Widget<SelenideElement> {
         }
     }
 
+    public void doubleClick() {
+        if (isDemoMode()) {
+            moveMouseToComponent();
+        }
+        if (isEdgeQuirksMode()) {
+            clickAtElementLocation();
+            clickAtElementLocation();
+        } else {
+            get().doubleClick();
+        }
+    }
+
     /**
      * Click.
      *
