@@ -7,11 +7,13 @@ import org.openqa.selenium.WebElement;
 
 import uk.co.blackpepper.relish.core.Component;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static com.codeborne.selenide.Selenide.$;
@@ -50,7 +52,15 @@ public class Table extends SelenideAbstractListWidget<HtmlRow>
 
     @Override
     public By itemsSelector() {
-        return By.xpath("//tr[td]");
+        return By.cssSelector("tr");
+    }
+
+    @Override
+    protected List<SelenideElement> items()
+    {
+        return new ArrayList<>(get().$$(itemsSelector()).stream()
+                .filter(elem -> elem.$$(By.cssSelector("td")).size() > 0)
+                .collect(Collectors.toList()));
     }
 
     /**
