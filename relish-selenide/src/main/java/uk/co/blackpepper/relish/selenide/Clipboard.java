@@ -26,7 +26,7 @@ public class Clipboard {
                             "    var body = document.getElementsByTagName(\"BODY\")[0];\n" +
                             "    var textField = document.createElement(\"input\");\n" +
                             "    textField.setAttribute('id', '" + fieldId + "');\n" +
-                            "    textField.setAttribute('style', 'opacity: 0; position: absolute; top: 0; left 0;');\n" +
+                            "    textField.setAttribute('style', 'opacity: 0; position: absolute; top: 0; left 0; z-index: 2000');\n" +
                             "    body.appendChild(textField);\n" +
                             "    textField.select();\n" +
                             "}\n"
