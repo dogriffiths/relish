@@ -290,7 +290,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
             int currentY = currentPosition.y;
             Point browserPosition = WebDriverRunner.getWebDriver().manage().window().getPosition();
             int targetX = location.getX() + browserPosition.getX();
-            int targetY = location.getY() + browserPosition.getY() + 75;
+            int targetY = location.getY() + browserPosition.getY() + 120;
             int x = currentX;
             int y = currentY;
             int diffX = targetX - currentX;
