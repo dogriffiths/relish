@@ -47,6 +47,15 @@ public class InputText extends Text {
     }
 
     /**
+     * Replace text.
+     *
+     * @param text the text
+     */
+    public void replaceText(String text) {
+        perform(ViewActions.replaceText(text));
+    }
+
+    /**
      * Clear text.
      */
     public void clearText() {
