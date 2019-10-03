@@ -34,10 +34,22 @@ public class InputText extends Text {
     public void enterText(String text) {
         click();
         clearText();
+        typeText(text);
+    }
+
+    /**
+     * Type text.
+     *
+     * @param text the text
+     */
+    public void typeText(String text) {
         perform(ViewActions.typeText(text));
     }
 
-    private void clearText() {
+    /**
+     * Clear text.
+     */
+    public void clearText() {
         perform(ViewActions.clearText()).perform(closeSoftKeyboard());
     }
 }
