@@ -114,6 +114,22 @@ public abstract class Component implements Getable {
             method = clazz.getDeclaredMethod(methodName);
             return method.invoke(this);
         } catch (IllegalAccessException e) {
+            return evaluateGetMethod(methodName);
+        } catch (NoSuchMethodException nsme) {
+            return evaluateGetMethod(methodName);
+        } catch (InvocationTargetException ite) {
+            return evaluateGetMethod(methodName);
+        }
+    }
+
+    protected Object evaluateGetMethod(String methodName) {
+        Class<? extends Component> clazz = this.getClass();
+        Method method = null;
+        try {
+            String getterName = "get" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+            method = clazz.getDeclaredMethod(getterName);
+            return method.invoke(this);
+        } catch (IllegalAccessException e) {
             throw new IllegalStateException(format("Unable to access %s() for %s", methodName, this), e);
         } catch (NoSuchMethodException nsme) {
             throw new IllegalStateException(format("Unable to find %s() for %s", methodName, this), nsme);
