@@ -114,11 +114,11 @@ public abstract class Component implements Getable {
             method = clazz.getDeclaredMethod(methodName);
             return method.invoke(this);
         } catch (IllegalAccessException e) {
-            return evaluateGetMethod(methodName);
+            throw new IllegalStateException(format("Unable to access %s() for %s", methodName, this), e);
         } catch (NoSuchMethodException nsme) {
             return evaluateGetMethod(methodName);
         } catch (InvocationTargetException ite) {
-            return evaluateGetMethod(methodName);
+            throw new IllegalStateException(format("Error executing %s() for %s", methodName, this), ite);
         }
     }
 
