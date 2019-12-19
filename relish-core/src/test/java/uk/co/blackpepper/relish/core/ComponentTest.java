@@ -186,7 +186,7 @@ public class ComponentTest
         } catch(IllegalStateException ise) {
             Throwable cause = ise.getCause();
             assertTrue(cause instanceof IllegalStateException);
-            assertTrue(cause.getMessage().startsWith("Unable to access privateComponent()"));
+            assertTrue(cause.getMessage(), cause.getMessage().startsWith("Unable to find privateComponent()"));
         }
     }
 
@@ -230,6 +230,15 @@ public class ComponentTest
             assertTrue(cause instanceof IllegalStateException);
             assertTrue(cause.getMessage().startsWith("Error executing erroringMethod()"));
         }
+    }
+
+    @Test
+    public void canReadSuperClassMethodsInGetInterface() {
+        ExampleSubclassComponent component = new ExampleSubclassComponent(null);
+
+        assertEquals("I am a string method in the sub-class", component.get("subclassStringMethod"));
+        assertEquals("I am a method returning a string", component.get("methodForString"));
+        assertEquals("I am a non-get method returning a string", component.get("aMethodForString"));
     }
 }
 
@@ -460,5 +469,23 @@ class ExampleComponent extends Component
     public String getStringValue()
     {
         return null;
+    }
+
+    public String getMethodForString() {
+        return "I am a method returning a string";
+    }
+
+    public String aMethodForString() {
+        return "I am a non-get method returning a string";
+    }
+}
+
+class ExampleSubclassComponent extends ExampleComponent {
+    public ExampleSubclassComponent(Component parent) {
+        super(parent);
+    }
+
+    public String getSubclassStringMethod() {
+        return "I am a string method in the sub-class";
     }
 }
