@@ -56,7 +56,7 @@ public abstract class AbstractListWidget<T,U extends Widget> extends Widget<T> {
                 for (int i = 0; i < assertionValues.size(); i++) {
                     Object assertionValue = assertionValues.get(i);
                     if (assertionValue instanceof TableRow) {
-                        assertThat(get(i), getableMatchesAll((TableRow)assertionValue));
+                        get(i).matches((TableRow)assertionValue);
                     } else {
                         get(i).matches(assertionValue.toString());
                     }
