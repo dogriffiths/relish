@@ -64,4 +64,30 @@ public abstract class Widget<T> extends Component {
      * @return the widget
      */
     public abstract Widget<T> scrollTo();
+
+    @Override
+    public void matches(String s) {
+        if (s != null) {
+            if ("[INVISIBLE]".equalsIgnoreCase(s)) {
+                assertInvisible();
+                return;
+            }
+            if ("[VISIBLE]".equalsIgnoreCase(s)) {
+                assertVisible();
+                return;
+            }
+            if ("[ENABLED]".equalsIgnoreCase(s)) {
+                assertEnabled();
+                return;
+            }
+            if ("[DISABLED]".equalsIgnoreCase(s)) {
+                assertDisabled();
+                return;
+            }
+            if (s.startsWith("[") && s.endsWith("]")) {
+                s = s.substring(1, s.length() - 1);
+            }
+        }
+        super.matches(s);
+    }
 }

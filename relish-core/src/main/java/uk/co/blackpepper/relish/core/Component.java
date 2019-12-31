@@ -168,6 +168,10 @@ public abstract class Component implements Getable {
         throw new IllegalStateException("Cannot set string value for " + this);
     }
 
+    public void set(String value) {
+        setStringValue(value);
+    }
+
     @Override
     public String toString() {
         if (parent != null) {

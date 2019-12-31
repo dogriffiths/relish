@@ -106,6 +106,14 @@ public class ComponentTest
         assertEquals("Val2", component.get("subComponent2"));
     }
 
+    @Test
+    public void canSetTheStringValueWithSet()
+    {
+        ExampleComponent component = new ExampleComponent(mock(Component.class));
+        component.subComponent2.set("Val2");
+        assertEquals("Val2", component.get("subComponent2"));
+    }
+
     /**
      * Cannot set the value of a sub thing if it is not a widget.
      */
