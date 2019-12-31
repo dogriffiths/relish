@@ -84,7 +84,7 @@ public abstract class Widget<T> extends Component {
                 assertDisabled();
                 return;
             }
-            if (s.startsWith("[") && s.endsWith("]")) {
+            if (s.startsWith("[[") && s.endsWith("]]")) {
                 s = s.substring(1, s.length() - 1);
             }
         }
