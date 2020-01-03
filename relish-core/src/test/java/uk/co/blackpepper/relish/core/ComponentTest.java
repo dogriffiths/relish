@@ -154,6 +154,29 @@ public class ComponentTest
         component.matches(tableRow);
     }
 
+    @Test
+    public void canMatchAssertionsOnSubComponents()
+    {
+        ExampleComponent component = new ExampleComponent(null);
+
+        component.subComponent1.setStringValue("actual value 1");
+
+        ExampleInputComponent subComponent2 = new ExampleInputComponent(component) {
+            @Override
+            public void assertInvisible() {
+            }
+        };
+        component.subComponent2 = subComponent2;
+
+        TableRow tableRow = mock(TableRow.class);
+        Map<String, String> tableRowMap = new HashMap<>();
+        tableRowMap.put("subComponent1", "actual value 1");
+        tableRowMap.put("subComponent2", "[INVISIBLE]");
+        when(tableRow.entrySet()).thenReturn(tableRowMap.entrySet());
+
+        component.matches(tableRow);
+    }
+
     /**
      * If match against table row fails it will throw the correct exception.
      */
@@ -278,23 +301,25 @@ class ExampleInputComponent extends Widget
     @Override
     public void assertInvisible()
     {
+        throw new RuntimeException("Not implemented");
     }
 
     @Override
     public void assertVisible()
     {
+        throw new RuntimeException("Not implemented");
     }
 
     @Override
     public void assertDisabled()
     {
-
+        throw new RuntimeException("Not implemented");
     }
 
     @Override
     public void assertEnabled()
     {
-
+        throw new RuntimeException("Not implemented");
     }
 
     @Override

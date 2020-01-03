@@ -6,6 +6,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
+import static org.junit.Assert.assertEquals;
 import static uk.co.blackpepper.relish.core.TableRowMatchers.getableMatchesAll;
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 import static java.lang.String.format;
@@ -73,7 +74,7 @@ public abstract class Component implements Getable {
         for (Map.Entry<String, String> entry : tableRow.entrySet()) {
             Object result;
             if (this instanceof WidgetContainer) {
-                result = ((WidgetContainer)this).getWidget(entry.getKey());
+                result = ((WidgetContainer) this).getWidget(entry.getKey());
             } else {
                 result = evaluateMethod(entry.getKey());
             }
@@ -95,9 +96,18 @@ public abstract class Component implements Getable {
         assertVisible();
         attempt(new Runnable() {
             @Override
-        public void run() {
-            assertThat(Component.this, getableMatchesAll(tableRow));
-        }
+            public void run() {
+                for (Map.Entry<String,String> entry : tableRow.entrySet()) {
+                    Object attribute = evaluateMethod(entry.getKey());
+                    if (attribute instanceof Component) {
+                        ((Component)attribute).matches(entry.getValue());
+                    } else if (attribute instanceof Getable) {
+                        assertEquals(entry.getValue(), ((Getable)attribute).get(entry.getKey()));
+                    } else {
+                        assertEquals(entry.getValue(), attribute.toString());
+                    }
+                }
+            }
         }, 2000, 3);
     }
 
