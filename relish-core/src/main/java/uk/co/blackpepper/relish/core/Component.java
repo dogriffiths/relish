@@ -96,7 +96,12 @@ public abstract class Component implements Getable {
             @Override
             public void run() {
                 for (Map.Entry<String,String> entry : tableRow.entrySet()) {
-                    Object attribute = evaluateMethod(entry.getKey());
+                    Object attribute;
+                    try {
+                        attribute = evaluateMethod(entry.getKey());
+                    }catch(IllegalStateException e) {
+                        attribute = get(entry.getKey());
+                    }
                     if (attribute instanceof Component) {
                         ((Component)attribute).matches(entry.getValue());
                     } else if (attribute instanceof Getable) {
