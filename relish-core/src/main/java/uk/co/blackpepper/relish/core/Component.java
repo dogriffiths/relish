@@ -6,11 +6,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import static org.junit.Assert.assertEquals;
-import static uk.co.blackpepper.relish.core.TableRowMatchers.getableMatchesAll;
-import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 import static java.lang.String.format;
-import static org.junit.Assert.assertThat;
+import static org.junit.Assert.assertEquals;
+import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 
 /**
  * The type Component.

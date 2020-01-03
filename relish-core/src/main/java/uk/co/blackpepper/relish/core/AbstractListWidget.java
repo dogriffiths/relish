@@ -3,8 +3,6 @@ package uk.co.blackpepper.relish.core;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
-import static uk.co.blackpepper.relish.core.TableRowMatchers.getableMatchesAll;
 import static uk.co.blackpepper.relish.core.TestUtils.attempt;
 
 /**
