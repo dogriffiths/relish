@@ -137,11 +137,12 @@ public class SelenideWidget extends Widget<SelenideElement> {
 
     public void clickAtElementLocation() {
         SelenideElement selenideElement = get();
-        Point point = selenideElement.getCoordinates().onPage();
-        org.openqa.selenium.Rectangle rect = selenideElement.getRect();
-        int centerX = point.x + rect.width / 2;
-        int centerY = point.y + rect.height / 2;
-        actions().moveToElement(Selenide.$("body"), centerX, centerY).click().perform();
+//        Point point = selenideElement.getCoordinates().onPage();
+//        org.openqa.selenium.Rectangle rect = selenideElement.getRect();
+//        int centerX = point.x + rect.width / 2;
+//        int centerY = point.y + rect.height / 2;
+//        actions().moveToElement(Selenide.$("body"), centerX, centerY).click().perform();
+        actions().moveToElement(selenideElement).click().perform();
     }
 
     /**
