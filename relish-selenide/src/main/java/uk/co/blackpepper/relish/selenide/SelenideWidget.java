@@ -1,13 +1,12 @@
 package uk.co.blackpepper.relish.selenide;
 
 import com.codeborne.selenide.Condition;
-import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import com.codeborne.selenide.WebDriverRunner;
 import com.codeborne.selenide.ex.ElementNotFound;
 import com.codeborne.selenide.ex.ElementShould;
-import org.openqa.selenium.*;
 import org.openqa.selenium.Point;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Coordinates;
 import uk.co.blackpepper.relish.core.Component;
@@ -137,12 +136,14 @@ public class SelenideWidget extends Widget<SelenideElement> {
 
     public void clickAtElementLocation() {
         SelenideElement selenideElement = get();
+        JavascriptExecutor executor = (JavascriptExecutor) WebDriverRunner.getWebDriver();
+        executor.executeScript("arguments[0].click();", selenideElement);
 //        Point point = selenideElement.getCoordinates().onPage();
 //        org.openqa.selenium.Rectangle rect = selenideElement.getRect();
 //        int centerX = point.x + rect.width / 2;
 //        int centerY = point.y + rect.height / 2;
 //        actions().moveToElement(Selenide.$("body"), centerX, centerY).click().perform();
-        actions().moveToElement(selenideElement).click().perform();
+//        actions().moveToElement(selenideElement).click().perform();
     }
 
     /**
