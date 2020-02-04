@@ -76,12 +76,6 @@ public class InputText extends InputWidget {
      * Clear.
      */
     public void clear() {
-        actions().click(get())
-                .sendKeys(Keys.END)
-                .keyDown(Keys.SHIFT)
-                .sendKeys(Keys.HOME)
-                .keyUp(Keys.SHIFT)
-                .sendKeys(Keys.BACK_SPACE)
-                .perform();
+        this.get().clear();
     }
 }
