@@ -34,7 +34,7 @@ allprojects {
 }
 
 dependencies {
-    compile 'com.android.tools.build:gradle:2.3.0'
+    compile 'com.android.tools.build:gradle:7.0.2'
 }
 
 install {
