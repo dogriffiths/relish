@@ -21,7 +21,7 @@ pipeline {
                         sh 'if [ -f /tmp/myserver.pid ]; then (kill $(cat /tmp/myserver.pid) || echo "Old server gone"); fi'
                         sh 'rm -f /tmp/myserver.pid'
                         sh 'rm -f /tmp/myserver.lock'
-                        sh 'daemonize ' +
+                        sh '/usr/local/sbin/daemonize ' +
                                 '-E BUILD_ID=dontKillMe ' +
                                 '-p /tmp/myserver.pid ' +
                                 '-l /tmp/myserver.lock ' +
