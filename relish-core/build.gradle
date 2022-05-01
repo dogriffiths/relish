@@ -33,6 +33,10 @@ task unitCoverageReport(type: JacocoReport, dependsOn: "test") {
     executionData = files("$buildDir/jacoco/test.exec")
 }
 
+jacoco {
+    toolVersion = "0.8.6"
+}
+
 dependencies {
     compile group: 'org.hamcrest', name: 'java-hamcrest', version: '2.0.0.0'
     compile 'org.hamcrest:hamcrest-core:1.3'
