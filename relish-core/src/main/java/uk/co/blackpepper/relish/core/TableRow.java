@@ -1,17 +1,14 @@
 package uk.co.blackpepper.relish.core;
 
+import cucumber.deps.com.thoughtworks.xstream.annotations.XStreamConverter;
+
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 /**
  * The type Table row.
  */
+@XStreamConverter(TableRowConverter.class)
 public class TableRow implements Getable {
     private final Map<String,String> map;
 
