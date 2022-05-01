@@ -9,6 +9,7 @@ import uk.co.blackpepper.relish.core.TableRow;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import cucumber.api.DataTable;
 import cucumber.api.Transpose;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
@@ -33,8 +34,9 @@ public class SomeSteps
     }
 
     @When("^I choose to add these tasks$")
-    public void iChooseToAddTheseTasks(List<TableRow> tasks)
+    public void iChooseToAddTheseTasks(DataTable dataTable)
     {
+        List<TableRow>tasks = dataTable.asList(TableRow.class);
         for(TableRow task : tasks)
         {
             taskPage.addButton().click();
@@ -44,14 +46,16 @@ public class SomeSteps
     }
 
     @Then("^I will see this on the list of tasks$")
-    public void iWillSeeThisOnTheListOfTasks(List<TableRow> tasks)
+    public void iWillSeeThisOnTheListOfTasks(DataTable dataTable)
     {
+        List<TableRow>tasks = dataTable.asList(TableRow.class);
         taskPage.taskTable().matches(tasks);
     }
 
     @When("^I will select these tasks$")
-    public void iWillSelectTheseTasks(List<TableRow> tasks)
+    public void iWillSelectTheseTasks(DataTable dataTable)
     {
+        List<TableRow>tasks = dataTable.asList(TableRow.class);
         taskPage.taskTable().matches(tasks.stream().map(t -> t.except("select")).collect(Collectors.toList()));
         taskPage.taskTable().set(tasks.stream().map(t -> t.except("name", "priority")).collect(Collectors.toList()));
     }
@@ -75,15 +79,17 @@ public class SomeSteps
     }
 
     @Then("^the edit form will contain$")
-    public void theEditFormWillContain(@Transpose List<TableRow> task)
+    public void theEditFormWillContain(@Transpose DataTable dataTable)
     {
-        editTaskPage.form().matches(task.get(0));
+        List<TableRow>tasks = dataTable.asList(TableRow.class);
+        editTaskPage.form().matches(tasks.get(0));
     }
 
     @When("^I save these changes$")
-    public void iSaveTheseChanges(@Transpose List<TableRow> task)
+    public void iSaveTheseChanges(@Transpose DataTable dataTable)
     {
-        editTaskPage.form().set(task.get(0));
+        List<TableRow>tasks = dataTable.asList(TableRow.class);
+        editTaskPage.form().set(tasks.get(0));
         editTaskPage.form().saveButton().click();
     }
 }
