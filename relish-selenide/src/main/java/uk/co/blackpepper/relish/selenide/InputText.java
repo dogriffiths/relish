@@ -1,6 +1,8 @@
 package uk.co.blackpepper.relish.selenide;
 
+import com.codeborne.selenide.WebDriverRunner;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
 import uk.co.blackpepper.relish.core.Component;
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.By;
@@ -77,5 +79,19 @@ public class InputText extends InputWidget {
      */
     public void clear() {
         this.get().clear();
+        // Both call clear and then select all and delete, because sometimes clear does not appear to work...
+        selectAll();
+        this.sendKeys(Keys.chord(Keys.DELETE));
+    }
+
+    public void selectAll() {
+        WebDriver webDriver = WebDriverRunner.getWebDriver();
+        String driverName = webDriver.toString();
+        boolean isMac = driverName.toUpperCase().contains("MAC");
+        if (isMac) {
+            this.sendKeys(Keys.chord(Keys.COMMAND,"a"));
+        } else {
+            this.sendKeys(Keys.chord(Keys.CONTROL,"a"));
+        }
     }
 }

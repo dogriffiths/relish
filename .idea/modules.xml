@@ -2,13 +2,21 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/examples/selenide/example-selenide/example-selenide.iml" filepath="$PROJECT_DIR$/examples/selenide/example-selenide/example-selenide.iml" />
-      <module fileurl="file://$PROJECT_DIR$/examples/examples.iml" filepath="$PROJECT_DIR$/examples/examples.iml" />
       <module fileurl="file://$PROJECT_DIR$/relish.iml" filepath="$PROJECT_DIR$/relish.iml" />
-      <module fileurl="file://$PROJECT_DIR$/relish-core/relish-core.iml" filepath="$PROJECT_DIR$/relish-core/relish-core.iml" />
-      <module fileurl="file://$PROJECT_DIR$/relish-espresso/relish-espresso.iml" filepath="$PROJECT_DIR$/relish-espresso/relish-espresso.iml" />
-      <module fileurl="file://$PROJECT_DIR$/relish-selenide/relish-selenide.iml" filepath="$PROJECT_DIR$/relish-selenide/relish-selenide.iml" />
-      <module fileurl="file://$PROJECT_DIR$/examples/selenide/selenide.iml" filepath="$PROJECT_DIR$/examples/selenide/selenide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/relish.examples.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/relish.examples.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/selenide/relish.examples.selenide.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/selenide/relish.examples.selenide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/selenide/example-selenide/relish.examples.selenide.example-selenide.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/selenide/example-selenide/relish.examples.selenide.example-selenide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/selenide/example-selenide/relish.examples.selenide.example-selenide.main.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/selenide/example-selenide/relish.examples.selenide.example-selenide.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/examples/selenide/example-selenide/relish.examples.selenide.example-selenide.test.iml" filepath="$PROJECT_DIR$/.idea/modules/examples/selenide/example-selenide/relish.examples.selenide.example-selenide.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish.main.iml" filepath="$PROJECT_DIR$/.idea/modules/relish.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.main.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.test.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish.test.iml" filepath="$PROJECT_DIR$/.idea/modules/relish.test.iml" />
     </modules>
   </component>
 </project>
