@@ -89,9 +89,9 @@ public class InputText extends InputWidget {
         String driverName = webDriver.toString();
         boolean isMac = driverName.toUpperCase().contains("MAC");
         if (isMac) {
-            this.sendKeys(Keys.chord(Keys.COMMAND,"a"));
+            this.get().sendKeys(Keys.chord(Keys.COMMAND,"a"));
         } else {
-            this.sendKeys(Keys.chord(Keys.CONTROL,"a"));
+            this.get().sendKeys(Keys.chord(Keys.CONTROL,"a"));
         }
     }
 }
