@@ -26,7 +26,7 @@ pipeline {
                             '-l /tmp/myserver.lock ' +
                             '-o /tmp/myserver.out ' +
                             '-c "$PWD/examples/selenide/website" ' +
-                            '/usr/bin/python -m SimpleHTTPServer 2>&1 > /tmp/myserver.runout'
+                            '/usr/bin/python3 -m http.server 2>&1 > /tmp/myserver.runout'
                     if(isUnix()){
                         sh './gradlew clean build check unitCoverageReport --info --stacktrace'
                     }
