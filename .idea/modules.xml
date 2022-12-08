@@ -13,6 +13,9 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.main.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.test.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-core/relish.relish-core.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.androidTest.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.androidTest.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.main.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.unitTest.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-espresso/relish.relish-espresso.unitTest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.main.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.test.iml" filepath="$PROJECT_DIR$/.idea/modules/relish-selenide/relish.relish-selenide.test.iml" />

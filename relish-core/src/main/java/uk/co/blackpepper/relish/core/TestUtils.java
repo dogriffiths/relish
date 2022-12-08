@@ -1,5 +1,8 @@
 package uk.co.blackpepper.relish.core;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  * The type Test utils.
  */
@@ -37,5 +40,21 @@ public class TestUtils {
             assert e != null;
             throw new IllegalStateException("Failed after several retries: " + e.getMessage(), e);
         }
+    }
+
+    public static String getGetterName(String methodName) {
+        String getterName = "get" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+
+        Pattern pattern = Pattern.compile("\\s(\\S)");
+        Matcher matcher = pattern.matcher(getterName);
+
+        StringBuffer result = new StringBuffer();
+        while (matcher.find()) {
+            matcher.appendReplacement(result, matcher.group().toUpperCase().trim());
+        }
+
+        matcher.appendTail(result);
+        getterName = result.toString();
+        return getterName;
     }
 }

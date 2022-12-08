@@ -139,7 +139,7 @@ public abstract class Component implements Getable {
         Class<? extends Component> clazz = this.getClass();
         Method method = null;
         try {
-            String getterName = "get" + methodName.substring(0, 1).toUpperCase() + methodName.substring(1);
+            String getterName = TestUtils.getGetterName(methodName);
             method = clazz.getMethod(getterName);
             return method.invoke(this);
         } catch (IllegalAccessException e) {
