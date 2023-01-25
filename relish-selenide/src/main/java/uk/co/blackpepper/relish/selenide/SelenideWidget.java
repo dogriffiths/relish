@@ -89,6 +89,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
 
     @Override
     public void click() {
+        assertVisible();
         if (demoMode) {
             moveMouseToComponent();
         }
@@ -100,6 +101,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
     }
 
     public void doubleClick() {
+        assertVisible();
         if (isDemoMode()) {
             moveMouseToComponent();
         }
@@ -118,6 +120,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
      * @param y the y
      */
     public void click(int x, int y) {
+        assertVisible();
         if (demoMode) {
             Point location = get().getLocation();
             moveMouseTo(new Point(location.getX() + x, location.getY() + y));
@@ -135,6 +138,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
     }
 
     public void clickAtElementLocation() {
+        assertVisible();
         SelenideElement selenideElement = get();
         JavascriptExecutor executor = (JavascriptExecutor) WebDriverRunner.getWebDriver();
         executor.executeScript("arguments[0].click();", selenideElement);
@@ -197,6 +201,7 @@ public class SelenideWidget extends Widget<SelenideElement> {
 
     @Override
     public void assertEnabled() {
+        assertVisible();
         shouldBe(enabled);
     }
 

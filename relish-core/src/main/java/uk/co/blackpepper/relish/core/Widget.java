@@ -19,7 +19,7 @@ public abstract class Widget<T> extends Component {
         if (parent == null) {
             throw new IllegalArgumentException("Parent cannot be null");
         }
-        parent.assertVisible();
+//        parent.assertVisible();
         this.peer = peer;
     }
 
