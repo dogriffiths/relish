@@ -31,14 +31,17 @@ public class WidgetTest {
 
     /**
      * Parent must be visible.
+     * DISABLED. No longer require parents to be visible. This is because you might want to assert that a widget
+     * is invisible when it's parent is not visible. Requiring a component's parent to be visible in this context
+     * makes no sense
      */
-    @Test
-    public void parentMustBeVisible() {
-        Component parent = mock(Component.class);
-        doThrow(new AssertionError("Not visible")).when(parent).assertVisible();
-        expectedException.expect(AssertionError.class);
-        create("A peer", parent);
-    }
+//    @Test
+//    public void parentMustBeVisible() {
+//        Component parent = mock(Component.class);
+//        doThrow(new AssertionError("Not visible")).when(parent).assertVisible();
+//        expectedException.expect(AssertionError.class);
+//        create("A peer", parent);
+//    }
 
     /**
      * Can get the same peer back.
